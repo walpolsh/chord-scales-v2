@@ -7,14 +7,6 @@ import React, { Component } from 'react';
 
 
 
-// const triads = (scale) => {
-//   const arr1 = [scale[0], scale[2], scale[4]]
-//   const arr2 = [scale[1], scale[3], scale[5]]
-//   const sliceIt = [arr1.shift().push()]
-//   console.log(sliceIt)
-
-
-// }
 
 
 class Scales extends Component {
@@ -22,16 +14,14 @@ class Scales extends Component {
     super();
     this.state = {
       notes: [],
-      value: 0,
+      value: '',
     }
 
     this.changeKey = this.changeKey.bind(this)
   }
   
-  
-  
   changeKey(event){
-    let notes = ["C", "C#", "D",  "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    let notes = ["C", "Db", "D", "Eb", "E", "F", "F#", "Gb", "Ab", "A", "Bb", "B"]
     const e = event.target.value
     let chunk1 = notes.slice(0, e)
     let chunk2 = notes.slice(e, notes.length)
@@ -43,6 +33,7 @@ class Scales extends Component {
 
   render() {
     const notes = this.state.notes;
+    const key = this.state.value
     const buildScale = (a,b,c,d,e,f,g) => [
       notes[a],
       notes[b],
@@ -53,7 +44,25 @@ class Scales extends Component {
       notes[g],
     ]
     
-    const triads = []
+    const triads = (scale) => {
+      // create a new array, set a starting index, reach the end of the array, return to the first index and stop the loop at the initial array.
+
+      let arr = [
+        [scale[0], scale[2], scale[4]],
+        [scale[1], scale[3], scale[5]],
+        [scale[2], scale[4], scale[6]],
+        [scale[3], scale[5], scale[0]],
+        [scale[4], scale[6], scale[1]],
+        [scale[5], scale[0], scale[2]],
+        [scale[6], scale[1], scale[3]]
+      ]
+      return arr.map((item, key )=> 
+          <div>
+            <ul key={key}>{item.join(' - ')}</ul>
+          </div>
+      )
+    }
+
     const major = buildScale(0,2,4,5,7,9,11)
     const harmonicMinor = buildScale(0,2,3,5,7,8,11)
 
@@ -65,32 +74,41 @@ class Scales extends Component {
         arr.push(last.concat(first))
       }
       arr.shift()
-      return arr.map(x => <div>{x.join(' - ')}</div>)
+      return arr.map(x => <ul>{x.join(' - ')}</ul>)
     }
 
     return(
       <div>
+        <div>
+          <h1>Select Key</h1>
+          <h1>Select Scale</h1>
+
+        </div>
         <select onChange={this.changeKey}>
           <option value='-'>-</option>
           <option value='0'>C</option>
-          <option value='1'>C#</option>
+          <option value='1'>Db</option>
           <option value='2'>D</option>
-          <option value='3'>D#</option>
+          <option value='3'>Eb</option>
           <option value='4'>E</option>
           <option value='5'>F</option>
-          <option value='6'>F#</option>
+          <option value='6'>Gb</option>
           <option value='7'>G</option>
-          <option value='8'>G#</option>
+          <option value='8'>Ab</option>
           <option value='9'>A</option>
-          <option value='10'>A#</option>
+          <option value='10'>Bb</option>
           <option value='11'>B</option>
         </select>
-        <h1>Major</h1>
+        <h1>{key.toString} Major</h1>
         <h1>{major.join(' - ')}</h1>
         <h1>{modes(major)}</h1>
+        <h1>{triads(major)}</h1>
+
         <h1>Harmonic Minor</h1>
         <h1>{harmonicMinor.join(' - ')}</h1>
         <h1>{modes(harmonicMinor)}</h1>
+        <h1>{triads(harmonicMinor)}</h1>
+
 
 
 
