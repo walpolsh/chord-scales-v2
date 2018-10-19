@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 //https://medium.com/@ezra_69528/music-theory-foundations-in-a-few-lines-of-code-90026efb5b23
 
 class Scales extends Component {
@@ -11,7 +12,6 @@ class Scales extends Component {
       }
 
     this.changeKey = this.changeKey.bind(this)
-
   }
   
   changeKey = (event) => {
@@ -20,7 +20,6 @@ class Scales extends Component {
     const chunk1 = notation.slice(0, e)
     const chunk2 = notation.slice(e, notation.length)
     let newKey = chunk2.concat(chunk1)
-    console.log(newKey)
     this.setState({
       notes: newKey,
     })
@@ -29,24 +28,9 @@ class Scales extends Component {
   render() {
     
     const triads = (scale) => {
-      // create a new array, set a starting index, reach the end of the array, return to the first index and stop the loop at the initial array.
-      let closed = [[scale[0], scale[2], scale[4]],
-      [scale[1], scale[3], scale[5]]]
-      
-      let arr = [
-        [scale[0], scale[2], scale[4]],
-        [scale[1], scale[3], scale[5]],
-        [scale[2], scale[4], scale[6]],
-        [scale[3], scale[5], scale[0]],
-        [scale[4], scale[6], scale[1]],
-        [scale[5], scale[0], scale[2]],
-        [scale[6], scale[1], scale[3]]
-      ]
-      return arr.map((item, key )=> 
-      <div>
-            <ul key={key}>{item.join(' - ')}</ul>
-          </div>
-      )
+    }
+
+    const sevenths = (scale) => {
     }
 
 
@@ -56,23 +40,50 @@ class Scales extends Component {
       let scaleNotes = a.slice(7,14);
       return [scaleNums, scaleNotes.map(x => notes[x])]
     }
+
     //Major Keys
     const Ionian = ['1', '2', '3', '4', '5', '6', '7',0,2,4,5,7,9,11]
     const Dorian = ['1','2','b3','4','5','6','b7',0,2,3,5,7,9,10]
+    const Phrygian = ['1', 'b2', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 1, 3, 5, 7, 8, 10]
+    const Lydian = ['1', '2 ', '3 ', '#4', '5 ', '6 ', '7 ', 0, 2, 4, 6, 7, 9, 11]
+    const Mixolydian = ['1', '2 ', '3 ', '4 ', '5 ', '6 ', 'b7', 0, 2, 4, 5, 7, 9, 10]
 
-    const modes = (scale) => {
-      let arr = []
-      for (let i = 0; i < scale.length; i++) {
-        let first = scale.slice(0, i)
-        let last = scale.slice(i, scale.length)
-        arr.push(last.concat(first))
-      }
-      arr.shift()
-      return arr.map(x => <ul>{x.join(' - ')}</ul>)
+    const Aeolian = ['1', '2 ', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 2, 3, 5, 7, 8, 10]
+
+    const Locrian = ['1', 'b2', 'b3', '4 ', 'b5', 'b6', 'b7', 0, 1, 3, 5, 6, 8, 10]
+    const MajorStrings = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian', 'Locrian'] 
+    const Major = [Ionian, Dorian, Phrygian, Lydian, Mixolydian,Aeolian, Locrian]
+    
+    const headerStyle = {
+      width: '100%',
+      textAlign: 'center',
+      background: 'gray',
+      color: 'white',
+
     }
+    
+    const table = {
+        width: '100%',
+        tableLayout: 'fixed',
+        textAlign: 'center',
+        background: 'gray',
+        color: 'white',
+    }
+
+    const tableHead = {
+      textAlign: 'center',
+    }
+
+    const tr = {
+      border: '15px, #f33'
+    }
+    const td = {
+      width: '15%',
+    }
+
     return(
       <div>
-        <div>
+        <div style={headerStyle}>
           <h1>Select Key</h1>
             <select onChange={this.changeKey}>
               <option value='-'>-</option>
@@ -90,14 +101,27 @@ class Scales extends Component {
               <option value='11'>B</option>
           </select>
 
-          <h1>Select Scale</h1>
-
         </div>
-        <h1>{buildScale(Dorian)}</h1>
-        <h1>{buildScale(Ionian)}</h1>
+        <table style={table}>
+          <thead>{`${this.state.notes[0]} Major `}</thead>
+          <thead>
 
-
-
+            {MajorStrings.map(x => <th>{x}</th>)}
+          </thead>
+          <tbody>
+        {Major.map(x => {
+          let [y, z] = buildScale(x)
+          return (
+                // <td>
+                //   {y.map(x => <tr style={td}>{x}</tr>)}
+                // </td>
+                <td>
+                  {z.map(x => <tr style={td}>{x}</tr>)}
+                </td>
+            )
+        })}
+          </tbody>
+        </table>
       </div>
     )
   }
