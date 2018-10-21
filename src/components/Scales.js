@@ -36,22 +36,19 @@ class Scales extends Component {
 
     const buildScale = (a) => { 
       let notes = this.state.notes;
-      let scaleNums = a.slice(0, 7);
-      let scaleNotes = a.slice(7,14);
+      let scaleNums = a[0].slice(0, 7);
+      let scaleNotes = a[0].slice(7,14);
       return [scaleNums, scaleNotes.map(x => notes[x])]
     }
 
     //Major Keys
-    const Ionian = ['1', '2', '3', '4', '5', '6', '7',0,2,4,5,7,9,11]
-    const Dorian = ['1','2','b3','4','5','6','b7',0,2,3,5,7,9,10]
-    const Phrygian = ['1', 'b2', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 1, 3, 5, 7, 8, 10]
-    const Lydian = ['1', '2 ', '3 ', '#4', '5 ', '6 ', '7 ', 0, 2, 4, 6, 7, 9, 11]
-    const Mixolydian = ['1', '2 ', '3 ', '4 ', '5 ', '6 ', 'b7', 0, 2, 4, 5, 7, 9, 10]
-
-    const Aeolian = ['1', '2 ', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 2, 3, 5, 7, 8, 10]
-
-    const Locrian = ['1', 'b2', 'b3', '4 ', 'b5', 'b6', 'b7', 0, 1, 3, 5, 6, 8, 10]
-    const MajorStrings = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian', 'Locrian'] 
+    const Ionian = [['1', '2', '3', '4', '5', '6', '7',0,2,4,5,7,9,11],['Ionian']]
+    const Dorian = [['1','2','b3','4','5','6','b7',0,2,3,5,7,9,10], ['Dorian']]
+    const Phrygian = [['1', 'b2', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 1, 3, 5, 7, 8, 10], ['Phrygian']]
+    const Lydian = [['1', '2 ', '3 ', '#4', '5 ', '6 ', '7 ', 0, 2, 4, 6, 7, 9, 11], ['Lydian']]
+    const Mixolydian = [['1', '2 ', '3 ', '4 ', '5 ', '6 ', 'b7', 0, 2, 4, 5, 7, 9, 10], ['Mixolydian']]
+    const Aeolian = [['1', '2 ', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 2, 3, 5, 7, 8, 10], ['Aeolian']]
+    const Locrian = [['1', 'b2', 'b3', '4 ', 'b5', 'b6', 'b7', 0, 1, 3, 5, 6, 8, 10], ['Locrian ']]
     const Major = [Ionian, Dorian, Phrygian, Lydian, Mixolydian,Aeolian, Locrian]
     
     const headerStyle = {
@@ -59,7 +56,6 @@ class Scales extends Component {
       textAlign: 'center',
       background: 'gray',
       color: 'white',
-
     }
     
     const table = {
@@ -102,26 +98,39 @@ class Scales extends Component {
           </select>
 
         </div>
-        <table style={table}>
-          <thead>{`${this.state.notes[0]} Major `}</thead>
-          <thead>
-
-            {MajorStrings.map(x => <th>{x}</th>)}
-          </thead>
+        <table>
           <tbody>
-        {Major.map(x => {
-          let [y, z] = buildScale(x)
+
+              {Major.map(scales => {
+                    let [numbers, notes] = buildScale(scales)
+                    return <tr><td>{scales[1]}</td>
+                          {notes.map(x => <td>{x}</td>)}
+                          </tr>
+                  }  
+                )}
+          </tbody>
+        </table>
+        
+        {/* <table style={table}>
+          <thead>{`${this.state.notes[0]} Major `}</thead>
+          <tbody>
+          <thead>
+            {MajorStrings.map(x => <tr>{x}</tr>)}
+          </thead>
+        {Major.map(scales => {
+          let [numbers, notes] = buildScale(scales)
+          console.log(notes)
           return (
                 // <td>
                 //   {y.map(x => <tr style={td}>{x}</tr>)}
                 // </td>
                 <td>
-                  {z.map(x => <tr style={td}>{x}</tr>)}
+                  {notes.map(x => <tr style={td}>{x}</tr>)}
                 </td>
             )
         })}
           </tbody>
-        </table>
+        </table> */}
       </div>
     )
   }
