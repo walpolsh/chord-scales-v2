@@ -1,0 +1,8 @@
+const Ionian = [['1', '2', '3', '4', '5', '6', '7',0,2,4,5,7,9,11],['Ionian']]
+const Dorian = [['1','2','b3','4','5','6','b7',0,2,3,5,7,9,10], ['Dorian']]
+const Phrygian = [['1', 'b2', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 1, 3, 5, 7, 8, 10], ['Phrygian']]
+const Lydian = [['1', '2 ', '3 ', '#4', '5 ', '6 ', '7 ', 0, 2, 4, 6, 7, 9, 11], ['Lydian']]
+const Mixolydian = [['1', '2 ', '3 ', '4 ', '5 ', '6 ', 'b7', 0, 2, 4, 5, 7, 9, 10], ['Mixolydian']]
+const Aeolian = [['1', '2 ', 'b3', '4 ', '5 ', 'b6', 'b7', 0, 2, 3, 5, 7, 8, 10], ['Aeolian']]
+const Locrian = [['1', 'b2', 'b3', '4 ', 'b5', 'b6', 'b7', 0, 1, 3, 5, 6, 8, 10], ['Locrian ']]
+export const Major = [Ionian, Dorian, Phrygian, Lydian, Mixolydian,Aeolian, Locrian]
