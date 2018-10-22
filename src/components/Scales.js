@@ -3,6 +3,12 @@ import { Major } from '../constants/scales'
 
 //https://medium.com/@ezra_69528/music-theory-foundations-in-a-few-lines-of-code-90026efb5b23
 
+let permute = (arr, i) => {
+  const chunk1 = arr.slice(0, i)
+  const chunk2 = arr.slice(i, arr.length)
+  return chunk2.concat(chunk1)
+}
+ 
 class Scales extends Component {
   constructor() {
     super();
@@ -18,9 +24,7 @@ class Scales extends Component {
   changeKey = (event) => {
     let keys =  ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
     const e = event.target.value
-    const chunk1 = keys.slice(0, e)
-    const chunk2 = keys.slice(e, keys.length)
-    let newKey = chunk2.concat(chunk1)
+    let newKey = permute(keys, e)
     this.setState({
       notes: newKey,
     })
@@ -28,8 +32,34 @@ class Scales extends Component {
 
   render() {
     
-    const chords = () => {
+    const buildSeventhChord = (scale) => {
+      let arr = buildScale(scale)
+      const closedPosition = (a) => {
+        return a.filter((n, i) => {
+          return i % 2 === 0
+        })
+      }
 
+      let nums = closedPosition(arr[0])
+      let notes = closedPosition(arr[1])
+      console.log(nums)
+      return [nums, notes]
+
+    }
+
+    const inversions = (chord) => {
+      let nums = chord[0]
+      let notes = chord[1]
+      let invertNums = [nums]
+      let invertNotes = [notes]
+      for (let i = 1; i < nums.length; i++) {
+        nums = permute(nums, i)
+        notes = permute(notes, i)
+        invertNums.push(nums)
+        invertNotes.push(notes)
+
+      }
+      return [invertNums, invertNotes]
     }
 
     const buildScale = (scale) => { 
@@ -45,7 +75,7 @@ class Scales extends Component {
       background: 'gray',
       color: 'white',
     }
-    
+
     const table = {
         width: '100%',
         tableLayout: 'fixed',
@@ -54,7 +84,8 @@ class Scales extends Component {
         background: 'gray',
         color: 'white',
     }
-
+    let maj7 = buildSeventhChord(Major[0])
+    console.log(inversions(maj7))
     return(
       <div>
         <div style={headerStyle}>
@@ -85,7 +116,8 @@ class Scales extends Component {
                     <th>{scales[1]}</th>
                     {notes.map(x => <td key={x}>{x}</td>)}
                   </tr>
-                  <tr><th> </th>
+                  <tr>
+                    <th>#</th>
                     {numbers.map(x => <td key={x}>{x}</td>)}
                   </tr>
                 </tbody>
