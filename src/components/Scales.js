@@ -9,6 +9,8 @@ const permute = (arr, i) => {
   const chunk2 = arr.slice(i, arr.length)
   return chunk2.concat(chunk1)
 }
+
+
  
 class Scales extends Component {
   constructor(props) {
@@ -26,9 +28,7 @@ class Scales extends Component {
   changeKey = (event) => {
     let keys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
     const e = event.target.value
-    const chunk1 = keys.slice(0, e)
-    const chunk2 = keys.slice(e, keys.length)  
-    let newKey = chunk2.concat(chunk1)
+    let newKey = permute(keys, e)
     this.setState({
       notes: newKey,
     })
@@ -47,7 +47,21 @@ class Scales extends Component {
 
 
   render() {
-    
+  //   const permute2 = (arr, i) => {
+  //     let seventh = buildScale(Major[0])
+  //     let [nums, notes] = seventh
+  //     let numsArr = [nums]
+  //     nums = [nums[0], nums[2], nums[4], nums[6]]
+  //     notes = [notes[0], notes[2], notes[4], notes[6]]
+  //     for (let i = 0; i < nums.length; i++) {
+  //       while (numsArr.length <= 4) {
+  //         if (i === 0) {
+  //           numsArr.push(nums[0])
+  //         }
+  //       }
+  //     }
+  //     console.log(arr, notes, nums)
+  // }
     const buildScale = (arr) => { 
       let notes = this.state.notes;
       let scaleNums = arr[0].slice(0, 7);
@@ -57,58 +71,23 @@ class Scales extends Component {
 
     const buildChord = (scale, voicing) => {
       let arr = buildScale(scale)
-      const first = (a) => {
+      
+      let firstInversion = (a) => {
         let map = a.filter((n, i) => i % 2 === 0)
         return map
       }
-      const second = (a) => {
-        return a.filter((n, i) => i % 2 !== 0)
-      }
+
+      let nums = firstInversion(arr[0])
+      let notes = firstInversion(arr[1])
+    
+      let numsArr = nums.map((num, i) => {
+        return permute(nums, i)
+      }).map(x => voicing(x))
+      let notesArr = notes.map((note, i) => {
+        return permute(notes, i)
+      }).map(x => voicing(x))
       
-      let nums = arr[0].concat(arr[0][0])
-      let notes = arr[1].concat(arr[1][0])
-
-      let nums1 = first(nums)
-      let notes1 = first(notes)
-      let nums2 = second(nums)
-      let notes2 = second(notes)
-
-      return [voicing(notes1), voicing(notes2), voicing(nums1), voicing(nums2)]
-    }
-
-    const inversions = (chord) => {
-      let [notes1, notes2, nums1, nums2] = chord
-      console.log(nums1[0], nums2[0])
-      let numsArr, notesArr; 
-      numsArr = [
-        [nums1[0], nums1[1], nums1[2], nums1[3]],
-        [nums2[0], nums2[1], nums2[2], nums2[3]],
-        [nums1[1], nums1[2], nums1[3], nums2[0]],
-        [nums2[1], nums2[2], nums2[3], nums1[1]],
-        [nums1[2], nums1[3], nums2[0], nums2[1]],
-        [nums2[2], nums2[3], nums1[1], nums1[2]],
-        [nums1[3], nums2[0], nums2[1], nums2[2]]
-      ].sort((a,b) => {
-        console.log(a)
-        return a.indexOf(nums1[0]) - b.indexOf(nums2[0])
-      })
-
-      
-      notesArr = [
-        [notes1[0], notes1[1], notes1[2], notes1[3]],
-        [notes2[0], notes2[1], notes2[2], notes2[3]],
-        [notes1[1], notes1[2], notes1[3], notes2[0]],
-        [notes2[1], notes2[2], notes2[3], notes1[1]],
-        [notes1[2], notes1[3], notes2[0], notes2[1]],
-        [notes2[2], notes2[3], notes1[1], notes1[2]],
-        [notes1[3], notes2[0], notes2[1], notes2[2]]
-      ].sort((a,b) => {
-        console.log(a)
-        return a.indexOf(notes1[0]) - b.indexOf(notes2[0])
-      })
-
-      console.table(numsArr)
-      return [notesArr, numsArr]
+      return [numsArr, notesArr]
     }
 
     const headerStyle = {
@@ -153,51 +132,81 @@ class Scales extends Component {
           </select>
         </div>
         <table style={table}>
+          <tbody style={{ borderSpacing: 10}}>
           {Major.map((scales, i) => {
-            let [numbers, notes] = buildScale(scales)
-              return (
-                <tbody key={i} style={{ borderSpacing: 10}}>
-                  <tr>
-                    <th>{scales[1]}</th>
-                    {buildScale(scales).map(x => <td key={x}>{x}</td>)}
-                  </tr>
-                </tbody>
-              )
-            })}
-        </table>
-        <h1>Chord Vocings</h1>
-        <h2>Closed Sevenths</h2>
-        <table style={table}>
-        <tr>
-          <th>{this.state.scale[0][1]}</th>
-        </tr>
-          {inversions(buildChord(Major[0], closedSeventh)).map((mode, i) => {
-              return (
-                <tbody>
-                  <tr>           
-                    {mode.map(x => <td>{x}</td>)}
-                  </tr>
-                </tbody>
-              )
-            })}
-        </table>
+            return (
+                <tr key={i}>
+                  <th key={i}>{scales[1]}</th>
+                  {buildScale(scales).map(x => <td key={x}>{x.join('-')}</td>)}
+                </tr>
+            )
+          })}
 
-        <h2>Closed Sevenths</h2>
-        <table style={table}>
-        <tr>
-          <th>{this.state.scale[0][1]}</th>
-        </tr>
-          {inversions(buildChord(Major[0], drop2)).map((mode, i) => {
-              return (
-                <tbody>
-                  <tr>           
-                    {mode.map(x => <td>{x}</td>)}
-                  </tr>
-                </tbody>
-              )
-            })}
+          </tbody>
         </table>
         
+        <h1>Chord Vocings</h1>
+
+        <h2>{this.state.scale[0][1]}</h2>
+        <table style={table}>
+          <thead>
+            <tr>
+              <th>
+                Closed Sevenths
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {buildChord(Major[0], drop3).map((mode, i) => {
+              return (
+                <tr key={i}>           
+                  {mode.map(x => <td key={x}>{x}</td>)}
+                </tr>
+              )
+            })}
+            {/* <th>Drop 2</th>
+            {inversions(buildChord(Major[0], drop2)).map((mode, i) => {
+              return (
+                  <tr>           
+                    {mode.map(x => <td>{x.join('-')}</td>)}
+                  </tr>
+              )
+            })}
+          <th>Drop 3</th>
+          {inversions(buildChord(Major[0], drop3)).map((mode, i) => {
+            return (
+                <tr>           
+                  {mode.map(x => <td>{x.join('-')}</td>)}
+                </tr>
+            )
+          })}
+          <th>Drop 2 and 3</th>
+          {inversions(buildChord(Major[0], drop23)).map((mode, i) => {
+            return (
+                <tr>           
+                  {mode.map(x => <td>{x.join('-')}</td>)}
+                </tr>
+            )
+          })}
+          <th>Drop 2 and 4</th>
+          {inversions(buildChord(Major[0], drop24)).map((mode, i) => {
+            return (
+                <tr>           
+                  {mode.map(x => <td>{x.join('-')}</td>)}
+                </tr>
+            )
+          })}
+          <th>Double Drop 2 and 3</th>
+          {inversions(buildChord(Major[0], doubleDrop24)).map((mode, i) => {
+            return (
+                <tr>           
+                  {mode.map(x => <td>{x.join('-')}</td>)}
+                </tr>
+            )
+          })} */}
+        </tbody>
+
+      </table>
       </div>
     )
   }
