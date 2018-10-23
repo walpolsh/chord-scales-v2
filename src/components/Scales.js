@@ -16,7 +16,6 @@ class Scales extends Component {
       scale: Major,
     }
 
-    this.changeKey = this.changeKey.bind(this)
   }
   
   changeKey = (event) => {
