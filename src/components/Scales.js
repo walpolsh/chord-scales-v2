@@ -15,7 +15,6 @@ class Scales extends Component {
       value: '',
       scale: Major,
     }
-
   }
   
   changeKey = (event) => {
@@ -41,26 +40,18 @@ class Scales extends Component {
 
     const buildScale = (arr) => { 
       let notes = this.state.notes;
-      let scaleNums = arr[0].slice(0, 7);
-      let scaleNotes = arr[0].slice(7,14);
+      let scaleNums = arr[0]
+      let scaleNotes = arr[1]
       return [scaleNums, scaleNotes.map(x => notes[x])]
     }
 
-    const buildChord = (scale, voicing) => {
+    const buildChord = (scale, voicing, index) => {
       let arr = buildScale(scale)
-
-      let nums = arr[0].filter((n, i) => i % 2 === 0)
-      let notes = arr[1].filter((n, i) => i % 2 === 0)
-    
-      let numsArr = nums.map((num, i) => {
-        return permute(nums, i)
+      let degrees = arr[index].filter((n, i) => i % 2 === 0)
+      let chordArr = degrees.map((note, i) => {
+        return permute(degrees, i)
       }).map(x => voicing(x))
-      
-      let notesArr = notes.map((note, i) => {
-        return permute(notes, i)
-      }).map(x => voicing(x))
-      
-      return [numsArr, notesArr]
+      return chordArr
     }
 
     const headerStyle = {
@@ -78,7 +69,6 @@ class Scales extends Component {
         background: 'gray',
         color: 'white',
     }
-    
     return(
       <div>
         <div style={headerStyle}>
@@ -109,62 +99,44 @@ class Scales extends Component {
           {this.state.scale.map((scales, i) => {
             return (
                 <tr key={i}>
-                  <th key={i}>{scales[1]}</th>
+                  <th key={i}>{scales[2]}</th>
                   {buildScale(scales).map(x => <td key={x}>{x.join('-')}</td>)}
                 </tr>
             )
           })}
-
           </tbody>
         </table>
         
         <h1>Chord Vocings</h1>
+        {this.state.scale.map(mode => {
+          return (
+          <div>
+            <h2>{mode[2]}</h2>
+            <table style={table}>
+              <thead>
+                <tr>
+                  <th>Voicing</th>
+                  <th>Root Position</th>
+                  <th>First Inversion</th>
+                  <th>Second Inversion</th>
+                  <th>Third Inversion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                 <th>Closed Seventh</th>
+                  {buildChord(mode, closedSeventh, 1).map((degree, i) => <td>{degree}</td>)}
+                </tr>
+                <tr>
+                  <th>#</th>
+                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td>{degree}</td>)}
+                </tr>
+              </tbody>
+            </table>
 
-        <h2>{this.state.scale[0][1]}</h2>
-        <table style={table}>
-          
-          <thead>
-            <tr>
-              <td>Voicing</td>
-              <td>Root Position</td>
-              <td>First Inversion</td>
-              <td>Second Inversion</td>
-              <td>Third Inversion</td>
-            </tr>
-          </thead>
-          <tbody>
-              <td>Closed</td>
-              {buildChord(this.state.scale[0], closedSeventh).map((mode) => 
-                    console.log(mode)
-              )}
-            
-              <tr>
-                <th>
-                  Drop 2
-                </th>
-              </tr>
-            {buildChord(this.state.scale[0], drop2).map((mode, i) => {
-              return (
-                <tr key={i}>           
-                  {mode.map(x => <td key={x}>{x}</td>)}
-                </tr>
-              )
-            })}        
-            <tr>
-              <th>
-                Drop 3
-              </th>
-            </tr>
-            {buildChord(this.state.scale[0], drop3).map((mode, i) => {
-              return (
-                <tr key={i}>           
-                  {mode.map(x => <td key={x}>{x}</td>)}
-                </tr>
-              )
-            })}        
-            
-        </tbody>
-      </table>
+          </div>
+          )
+        })}
       </div>
     )
   }
