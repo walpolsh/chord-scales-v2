@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { Major } from '../constants/scales';
+import { Major, MelodicMinor, HarmonicMinor } from '../constants/scales';
 import { closedTriad, openTriad, closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24 } from '../constants/chords';
+import permute from '../constants/helpers'
 
 //https://medium.com/@ezra_69528/music-theory-foundations-in-a-few-lines-of-code-90026efb5b23
-
-const permute = (arr, i) => {
-  const chunk1 = arr.slice(0, i)
-  const chunk2 = arr.slice(i, arr.length)
-  return chunk2.concat(chunk1)
-}
 
 
  
@@ -17,7 +12,6 @@ class Scales extends Component {
     super(props);
     this.state = {
       notes: ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"],
-      numerals: [0,1,2,3,4,5,6,7,8,9,10,11],
       value: '',
       scale: Major,
     }
@@ -35,11 +29,9 @@ class Scales extends Component {
   }
 
   changeScale = (event) => {
-    let scales = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+    let scales = [Major, MelodicMinor, HarmonicMinor];
     const e = event.target.value
-    const chunk1 = scales.slice(0, e)
-    const chunk2 = scales.slice(e, scales.length)  
-    let newScale = chunk2.concat(chunk1)
+    let newScale = scales[e]
     this.setState({
       scale: newScale,
     })
@@ -47,21 +39,7 @@ class Scales extends Component {
 
 
   render() {
-  //   const permute2 = (arr, i) => {
-  //     let seventh = buildScale(Major[0])
-  //     let [nums, notes] = seventh
-  //     let numsArr = [nums]
-  //     nums = [nums[0], nums[2], nums[4], nums[6]]
-  //     notes = [notes[0], notes[2], notes[4], notes[6]]
-  //     for (let i = 0; i < nums.length; i++) {
-  //       while (numsArr.length <= 4) {
-  //         if (i === 0) {
-  //           numsArr.push(nums[0])
-  //         }
-  //       }
-  //     }
-  //     console.log(arr, notes, nums)
-  // }
+
     const buildScale = (arr) => { 
       let notes = this.state.notes;
       let scaleNums = arr[0].slice(0, 7);
@@ -71,18 +49,14 @@ class Scales extends Component {
 
     const buildChord = (scale, voicing) => {
       let arr = buildScale(scale)
-      
-      let firstInversion = (a) => {
-        let map = a.filter((n, i) => i % 2 === 0)
-        return map
-      }
 
-      let nums = firstInversion(arr[0])
-      let notes = firstInversion(arr[1])
+      let nums = arr[0].filter((n, i) => i % 2 === 0)
+      let notes = arr[1].filter((n, i) => i % 2 === 0)
     
       let numsArr = nums.map((num, i) => {
         return permute(nums, i)
       }).map(x => voicing(x))
+      
       let notesArr = notes.map((note, i) => {
         return permute(notes, i)
       }).map(x => voicing(x))
@@ -111,7 +85,6 @@ class Scales extends Component {
         <div style={headerStyle}>
           <h1>Select Key</h1>
             <select onChange={this.changeKey}>
-              <option value='-'>-</option>
               <option value='0'>C</option>
               <option value='1'>Db</option>
               <option value='2'>D</option>
@@ -127,13 +100,14 @@ class Scales extends Component {
           </select>
           <h1>Select Scale</h1>
           <select onChange={this.changeScale}>
-            <option value='-'>-</option>
             <option value='0'>Major</option>
+            <option value='1'>Melodic Minor</option>
+            <option value='2'>Harmonic Minor</option>
           </select>
         </div>
         <table style={table}>
           <tbody style={{ borderSpacing: 10}}>
-          {Major.map((scales, i) => {
+          {this.state.scale.map((scales, i) => {
             return (
                 <tr key={i}>
                   <th key={i}>{scales[1]}</th>
@@ -149,63 +123,48 @@ class Scales extends Component {
 
         <h2>{this.state.scale[0][1]}</h2>
         <table style={table}>
+          
           <thead>
             <tr>
-              <th>
-                Closed Sevenths
-              </th>
+              <td>Voicing</td>
+              <td>Root Position</td>
+              <td>First Inversion</td>
+              <td>Second Inversion</td>
+              <td>Third Inversion</td>
             </tr>
           </thead>
           <tbody>
-            {buildChord(Major[0], drop3).map((mode, i) => {
+              <td>Closed</td>
+              {buildChord(this.state.scale[0], closedSeventh).map((mode) => 
+                    console.log(mode)
+              )}
+            
+              <tr>
+                <th>
+                  Drop 2
+                </th>
+              </tr>
+            {buildChord(this.state.scale[0], drop2).map((mode, i) => {
               return (
                 <tr key={i}>           
                   {mode.map(x => <td key={x}>{x}</td>)}
                 </tr>
               )
-            })}
-            {/* <th>Drop 2</th>
-            {inversions(buildChord(Major[0], drop2)).map((mode, i) => {
+            })}        
+            <tr>
+              <th>
+                Drop 3
+              </th>
+            </tr>
+            {buildChord(this.state.scale[0], drop3).map((mode, i) => {
               return (
-                  <tr>           
-                    {mode.map(x => <td>{x.join('-')}</td>)}
-                  </tr>
+                <tr key={i}>           
+                  {mode.map(x => <td key={x}>{x}</td>)}
+                </tr>
               )
-            })}
-          <th>Drop 3</th>
-          {inversions(buildChord(Major[0], drop3)).map((mode, i) => {
-            return (
-                <tr>           
-                  {mode.map(x => <td>{x.join('-')}</td>)}
-                </tr>
-            )
-          })}
-          <th>Drop 2 and 3</th>
-          {inversions(buildChord(Major[0], drop23)).map((mode, i) => {
-            return (
-                <tr>           
-                  {mode.map(x => <td>{x.join('-')}</td>)}
-                </tr>
-            )
-          })}
-          <th>Drop 2 and 4</th>
-          {inversions(buildChord(Major[0], drop24)).map((mode, i) => {
-            return (
-                <tr>           
-                  {mode.map(x => <td>{x.join('-')}</td>)}
-                </tr>
-            )
-          })}
-          <th>Double Drop 2 and 3</th>
-          {inversions(buildChord(Major[0], doubleDrop24)).map((mode, i) => {
-            return (
-                <tr>           
-                  {mode.map(x => <td>{x.join('-')}</td>)}
-                </tr>
-            )
-          })} */}
+            })}        
+            
         </tbody>
-
       </table>
       </div>
     )
