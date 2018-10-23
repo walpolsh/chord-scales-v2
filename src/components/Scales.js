@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Major, MelodicMinor, HarmonicMinor } from '../constants/scales';
-import { closedTriad, openTriad, closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24 } from '../constants/chords';
+import { closedTriad, openTriad, closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from '../constants/chords';
+import { Cycles } from '../constants/chords';
 import permute from '../constants/helpers'
 
 //https://medium.com/@ezra_69528/music-theory-foundations-in-a-few-lines-of-code-90026efb5b23
@@ -14,6 +15,7 @@ class Scales extends Component {
       notes: ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"],
       value: '',
       scale: Major,
+      cycle: Cycles[0],
     }
   }
   
@@ -35,14 +37,26 @@ class Scales extends Component {
     })
   }
 
+  changeCycle = (event) => {
+    let cycles = Cycles;
+    const e = event.target.value
+    let newCycle = cycles[e]
+    this.setState({
+      cycle: newCycle,
+    })
+  }
+
 
   render() {
 
+    const chords = [this.state.scale.map(scales => scales[3])].join(' ').split(',')
     const buildScale = (arr) => { 
       let notes = this.state.notes;
       let scaleNums = arr[0]
       let scaleNotes = arr[1]
-      return [scaleNums, scaleNotes.map(x => notes[x])]
+      let scaleName = arr[2]
+      let scaleChord = arr[3]
+      return [scaleNums, scaleNotes.map(x => notes[x]), scaleName, scaleChord]
     }
 
     const buildChord = (scale, voicing, index) => {
@@ -52,6 +66,12 @@ class Scales extends Component {
         return permute(degrees, i)
       }).map(x => voicing(x))
       return chordArr
+    }
+
+    const buildCycle = (arr) => {
+      let cycles = this.state.cycle
+      
+      return cycles.map(x => arr[x])
     }
 
     const headerStyle = {
@@ -65,7 +85,7 @@ class Scales extends Component {
         width: '100%',
         tableLayout: 'fixed',
         textAlign: 'center',
-        borderSpacing: 20,
+        borderSpacing: 10,
         background: 'gray',
         color: 'white',
     }
@@ -86,32 +106,64 @@ class Scales extends Component {
               <option value='9'>A</option>
               <option value='10'>Bb</option>
               <option value='11'>B</option>
-          </select>
-          <h1>Select Scale</h1>
-          <select onChange={this.changeScale}>
-            <option value='0'>Major</option>
-            <option value='1'>Melodic Minor</option>
-            <option value='2'>Harmonic Minor</option>
-          </select>
-        </div>
+            </select>
+            <h1>Select Scale</h1>
+            <select onChange={this.changeScale}>
+              <option value='0'>Major</option>
+              <option value='1'>Melodic Minor</option>
+              <option value='2'>Harmonic Minor</option>
+            </select>
+          </div>
         <table style={table}>
-          <tbody style={{ borderSpacing: 10}}>
+          <tbody style={{ borderSpacing: 20}}>
           {this.state.scale.map((scales, i) => {
+            let [nums, notes]= buildScale(scales)
             return (
-                <tr key={i}>
-                  <th key={i}>{scales[2]}</th>
-                  {buildScale(scales).map(x => <td key={x}>{x.join('-')}</td>)}
-                </tr>
+              <tr key={i}>
+                <th key={i}>{`${scales[2]} (${scales[3][0][0][0]})`}</th>
+                <td key={i + 1}>{nums.map(x => x)}</td>
+                <td key={i + 2}>{notes.map(x => x)}</td>
+              </tr>
             )
           })}
           </tbody>
         </table>
         
+        <h1>Chord Cycles</h1>
+        <select onChange={this.changeCycle}>
+            <option value='0'>Cycle 2</option>
+            <option value='1'>Cycle 3</option>
+            <option value='2'>Cycle 4</option>
+            <option value='3'>Cycle 5</option>
+            <option value='4'>Cycle 6</option>
+            <option value='5'>Cycle 7</option>
+          </select>
+        <table style={table}>
+              {this.state.scale.map(scales =>  {
+                let chordCycles = buildCycle(scales[3][0][0]).map(y => y)
+                let notes = buildScale(scales)[1]
+                let noteCycles = buildCycle(notes).map((x,i)=> x)                
+
+                return(
+                <tbody> 
+                  <tr>
+                    <th key={scales}>{`${scales[2]}`}</th>
+                    {buildCycle(scales[0]).map((x,i)=> <td key={i}>{x}</td>)}
+
+                  </tr>
+                  <tr>
+                    <td> </td>
+                    {chordCycles.map((y, i) => <td>{noteCycles[i]}{y}</td>)}
+                  </tr>
+                </tbody>
+              )})}
+        </table>
+
         <h1>Chord Vocings</h1>
         {this.state.scale.map(mode => {
           return (
           <div>
-            <h2>{mode[2]}</h2>
+            <h2>{`${mode[2]} (${mode[3][0][0][0]})`}</h2>
             <table style={table}>
               <thead>
                 <tr>
@@ -124,13 +176,55 @@ class Scales extends Component {
               </thead>
               <tbody>
                 <tr>
-                 <th>Closed Seventh</th>
-                  {buildChord(mode, closedSeventh, 1).map((degree, i) => <td>{degree}</td>)}
+                 <th>Closed</th>
+                  {buildChord(mode, closedSeventh, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
                 <tr>
-                  <th>#</th>
-                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td>{degree}</td>)}
+                  <th>&nbsp;</th>
+                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+                <tr>
+                 <th>Drop 2</th>
+                  {buildChord(mode, drop2, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  {buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                 <th>Drop 3</th>
+                  {buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  {buildChord(mode, drop3, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                 <th>Drop 2 and 3</th>
+                  {buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  {buildChord(mode, drop23, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                 <th>Drop 2 and 4</th>
+                  {buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  {buildChord(mode, drop24, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                 <th>Double Drop 2 and 3</th>
+                  {buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  {buildChord(mode, doubleDrop24, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                
+
               </tbody>
             </table>
 
