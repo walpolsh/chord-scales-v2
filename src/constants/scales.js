@@ -39,13 +39,13 @@ const LocrianNat2 = [['1', '2', 'b3', '4', 'b5', 'b6', 'b7'], [0, 2, 3, 5, 6, 8,
 const Locrianb4 = [['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7'], [0, 1, 3, 4, 6, 8, 10], ['Locrian b4'], [melodicMinorChords[6]]]
 export const MelodicMinor = [Melodic, Dorianb2, LydianAug, LydianDom, Mixolydianb6, LocrianNat2, Locrianb4]
 
+//Harmonic Minor
 let harmonicMinorChords = []
+
 for (let i = 0; i < 7; i++) {
   harmonicMinorChords.push(permuteAlt(["min/maj7", "min7b5 ", "maj7#5", "min7", "dom7", "maj7", "dim7"], i))
 }
 
-
-//Harmonic Minor
 const Harmonic = [['1', '2', 'b3', '4', '5', 'b6', '7'], [0, 2, 3, 5, 7, 8, 11],['Harmonic Minor'], [harmonicMinorChords[0]]]
 const LocrianNat6 = [['1', 'b2', 'b3', '4', 'b5', '6', 'b7'], [0, 1, 3, 5, 6, 9, 10], ['Locrian ♮6'], [harmonicMinorChords[1]]]
 const IonianSharp5 = [['1', '2', '3', '4', '#5', '6', '7'], [0, 2, 4, 5, 8, 9, 11], ['Ionian #5'], [harmonicMinorChords[2]]]
@@ -54,4 +54,3 @@ const PhrygianNat3 = [['1', 'b2', '3', '4', '5', 'b6', 'b7'], [0, 1, 4, 5, 7, 8,
 const LydianSharp2 = [['1', '#2', '3', '#4', '5', '6', '7'], [0, 3, 4, 6, 7, 9, 11], ['Lydian #2'], [harmonicMinorChords[5]]]
 const Locrianb4Alt7 = [['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8, 9], ['Locrian b4 bb7'], [harmonicMinorChords[6]]]
 export const HarmonicMinor = [Harmonic, LocrianNat6, IonianSharp5, DorianSharp4, PhrygianNat3, LydianSharp2, Locrianb4Alt7]
-
