@@ -163,14 +163,18 @@ class Scales extends Component {
               
               return(
               <tbody key={j + 1}> 
+                { this.state.onOff === '1' ?
                 <tr>
                   <th key={scales}>{`${scales[2]}`}</th>
                   {buildCycle(scales[0]).map((x,i)=> <td key={i++}>{x}</td>)}
                 </tr>
+                :
                 <tr>
-                  <td> </td>
+                  <th key={scales}>{`${scales[2]}`}</th>
                   {chordCycles.map((y, i) => <td key={i}>{noteCycles[i]} {y}</td>)}
                 </tr>
+                  
+                }
               </tbody>
             )})}
           </table>
