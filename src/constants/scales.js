@@ -1,4 +1,6 @@
 
+
+
 const permuteAlt = (arr, i) => {
   const arr2 = []
   const chunk1 = arr.slice(0, i)
@@ -6,6 +8,10 @@ const permuteAlt = (arr, i) => {
   arr2.push( chunk2.concat(chunk1))
   return arr2
 }
+
+//Chromatic Scale
+export const Chromatic = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"]
+
 //Major
 let majorChords = []
 
