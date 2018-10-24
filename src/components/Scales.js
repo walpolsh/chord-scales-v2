@@ -4,6 +4,7 @@ import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from '../cons
 import { Cycles } from '../constants/chords';
 import permute from '../constants/helpers'
 
+
 class Scales extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +16,12 @@ class Scales extends Component {
       onOff: 0,
     }
   }
- 
+
   //first index of keys becomes last index
   changeKey = (event) => {
     let keys = Chromatic;
     const e = event.target.value
+    console.log(e)
     this.setState({
       notes: permute(keys, e),
     })
@@ -58,7 +60,6 @@ class Scales extends Component {
       return [scaleNums, scaleNotes.map(x => notes[x]), scaleName, scaleChord]
     }
 
-    
     const buildChord = (scale, voicing, index) => {
       let arr = buildScale(scale)
       let degrees = arr[index].filter((n, i) => i % 2 === 0)
@@ -96,14 +97,10 @@ class Scales extends Component {
         background: 'gray',
         color: 'white',
     }
-
-    const select = {
-      backgroundColor: 'green',
-    }
-
     return (
       <div>
         <div style={headerStyle}>
+          <h1>Chord Scale Encyclopedia</h1>
           <div style={headerDiv}>
             <h2>Key</h2>
               <select onChange={this.changeKey}>
