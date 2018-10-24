@@ -157,16 +157,16 @@ class Scales extends Component {
           <table style={table}>
             {this.state.scale.map((scales, j) =>  {
               let chordCycles = buildCycle(scales[3][0][0]).map(y => y)
-              let notes = buildScale(scales)[1]
-              let noteCycles = buildCycle(notes).map((x)=> x)
-              console.log(noteCycles)
+              let numCycles = buildCycle(buildScale(scales)[0]).map(x=> x)
+              let noteCycles = buildCycle(buildScale(scales)[1]).map(x=> x)
+              console.log(chordCycles.map((y, i) => noteCycles[i]))
               
               return(
               <tbody key={j + 1}> 
                 { this.state.onOff === '1' ?
                 <tr>
                   <th key={scales}>{`${scales[2]}`}</th>
-                  {buildCycle(scales[0]).map((x,i)=> <td key={i++}>{x}</td>)}
+                    {chordCycles.map((y, i) => <td key={i}>{numCycles[i]} {y}</td>)}
                 </tr>
                 :
                 <tr>
@@ -179,7 +179,7 @@ class Scales extends Component {
             )})}
           </table>
 
-        <h1>Chord Vocings</h1>
+        <h1>Seventh Chord Vocings</h1>
         {this.state.scale.map((mode, j) => {
           return (
           <div key={j}>
@@ -195,55 +195,79 @@ class Scales extends Component {
                 </tr>
               </thead>
               <tbody>
+              {
+                this.state.onOff === '1' ?
+                <tr>
+                  <th>Closed</th>
+                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+                :
                 <tr>
                  <th>Closed</th>
                   {buildChord(mode, closedSeventh, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+              }
+              {
+                this.state.onOff === '1' ?
                 <tr>
-                  <th>&nbsp;</th>
-                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                  <th>Drop 2</th>
+                   {buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+                :
                 <tr>
                  <th>Drop 2</th>
                   {buildChord(mode, drop2, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+              }
+              {
+                this.state.onOff === '1' ?
                 <tr>
-                  <th>&nbsp;</th>
-                  {buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
-                </tr>
-                <tr>
-                 <th>Drop 3</th>
-                  {buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
-                </tr>
-                <tr>
-                  <th>&nbsp;</th>
+                <th>Drop 3</th>
                   {buildChord(mode, drop3, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+                :
                 <tr>
-                 <th>Drop 2 and 3</th>
-                  {buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
-                </tr>
+                <th>Drop 3</th>
+                 {buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+               </tr>
+              }
+              {
+                this.state.onOff === '1' ?
                 <tr>
-                  <th>&nbsp;</th>
+                <th>Drop 2/3</th>
                   {buildChord(mode, drop23, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+                :
                 <tr>
-                 <th>Drop 2 and 4</th>
-                  {buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
-                </tr>
+                <th>Drop 2/3</th>
+                 {buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+               </tr>
+              }
+              {
+                this.state.onOff === '1' ?
                 <tr>
-                  <th>&nbsp;</th>
+                 <th>Drop 2/4</th>
                   {buildChord(mode, drop24, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+                :
                 <tr>
-                 <th>Double Drop 2 and 3</th>
-                  {buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                 <th>Drop 2/4</th>
+                  {buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
+
+              }
+              {
+                this.state.onOff === '1' ?
                 <tr>
-                  <th>&nbsp;</th>
+                 <th>Double Drop 2/3</th>
                   {buildChord(mode, doubleDrop24, 0).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
                 </tr>
-                
+                :
+                <tr>
+                 <th>Double Drop 2/3</th>
+                  {buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join('-')}</td>)}
+                </tr>
+              }
 
               </tbody>
             </table>
