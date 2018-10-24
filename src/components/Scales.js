@@ -46,12 +46,14 @@ class Scales extends Component {
   }
   
   handleSwitch = (event) => {
-    const onOff = this.state.switch;
     const e = event.target.value;
+    this.setState({
+      onOff: e,
+    })
   }
 
   render() {
-    //take the scale structure, map it to actual notes
+
     const buildScale = (arr) => { 
       let notes = this.state.notes;
       let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
@@ -112,7 +114,7 @@ class Scales extends Component {
               <option value='2'>Harmonic Minor</option>
             </select>
             <h1>Notes/Numerals</h1>
-            <select onChange={this.changeScale}>
+            <select onChange={this.handleSwitch}>
               <option value='0'>Notes</option>
               <option value='1'>Numerals</option>
             </select>
@@ -121,18 +123,25 @@ class Scales extends Component {
 
         <h1>Scale Formulas</h1>
         <table style={table}>
-          <tbody style={{ borderSpacing: 20}}>
           {this.state.scale.map((scales, i) => {
             let [nums, notes]= buildScale(scales)
             return (
-              <tr key={i+3}>
-                <th key={i+4}>{`${scales[2]} (${scales[3][0][0][0]})`}</th>
-                {nums.map(x => <td key={i++}>{x}</td>)}
-                <td key={i ++}>{notes.map(x => x)}</td>
-              </tr>
+            <tbody key={i++} style={{ borderSpacing: 20}}>
+              {
+                this.state.onOff === '1' ?
+                <tr key={i++}>
+                  <th key={i++}>{`${scales[2]}`}</th>
+                  {nums.map(x => <td key={i++}>{x}</td>)}
+                </tr>
+                :
+                <tr>
+                  <th key={i++}>{`${scales[2]}`}</th>
+                  {notes.map(x => <td key={i ++}>{x}</td>)}
+                </tr>
+              }
+          </tbody>
             )
           })}
-          </tbody>
         </table>
         
         <h1>Seventh Chord Cycles</h1>
@@ -144,17 +153,19 @@ class Scales extends Component {
             <option value='4'>Cycle 6</option>
             <option value='5'>Cycle 7</option>
           </select>
+
           <table style={table}>
             {this.state.scale.map((scales, j) =>  {
               let chordCycles = buildCycle(scales[3][0][0]).map(y => y)
               let notes = buildScale(scales)[1]
               let noteCycles = buildCycle(notes).map((x)=> x)
+              console.log(noteCycles)
+              
               return(
               <tbody key={j + 1}> 
                 <tr>
                   <th key={scales}>{`${scales[2]}`}</th>
-                  {buildCycle(scales[0]).map((x,i)=> <td key={i}>{x}</td>)}
-
+                  {buildCycle(scales[0]).map((x,i)=> <td key={i++}>{x}</td>)}
                 </tr>
                 <tr>
                   <td> </td>
