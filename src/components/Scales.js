@@ -7,6 +7,8 @@ import {headerDiv, headerStyle, bodyDiv, tableStyle}  from '../styles/styles'
 import Header from '../containers/Header'
 import ScaleFormulas from '../containers/ScaleFormulas'
 import SeventhChordCycles from '../containers/SeventhChordCycles'
+import SeventhChordVoicings from '../containers/SeventhChordVoicings'
+
 
 class Scales extends Component {
   constructor(props) {
@@ -80,11 +82,6 @@ class Scales extends Component {
     let scale = this.state.scale
     let onOff = this.state.onOff
     
-
-
-
-   
-
     return (
       <div>
         <Header 
@@ -113,102 +110,19 @@ class Scales extends Component {
           buildCycle={this.buildCycle}
         />
 
-        <h1>Seventh Chord Vocings</h1>
-        {scale.map((mode, j) => {
-          return (
-          <div key={j}>
-            <h2>{`${mode[2]} (${mode[3][0][0][0]})`}</h2>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th>Voicing</th>
-                  <th>Root Position</th>
-                  <th>First Inversion</th>
-                  <th>Second Inversion</th>
-                  <th>Third Inversion</th>
-                </tr>
-              </thead>
-              <tbody>
-
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                  <th>Closed</th>
-                  {this.buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                 <th>Closed</th>
-                  {this.buildChord(mode, closedSeventh, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-              }
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                  <th>Drop 2</th>
-                   {this.buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                 <th>Drop 2</th>
-                  {this.buildChord(mode, drop2, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-              }
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                <th>Drop 3</th>
-                  {this.buildChord(mode, drop3, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                <th>Drop 3</th>
-                 {this.buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-               </tr>
-              }
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                <th>Drop 2/3</th>
-                  {this.buildChord(mode, drop23, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                <th>Drop 2/3</th>
-                 {this.buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-               </tr>
-              }
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                 <th>Drop 2/4</th>
-                  {this.buildChord(mode, drop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                 <th>Drop 2/4</th>
-                  {this.buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-
-              }
-              {
-                this.state.onOff === '1' ?
-                <tr>
-                 <th>Double Drop 2/3</th>
-                  {this.buildChord(mode, doubleDrop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-                :
-                <tr>
-                 <th>Double Drop 2/3</th>
-                  {this.buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
-                </tr>
-              }
-
-              </tbody>
-            </table>
-          </div>
-          )
-        })}
+        <SeventhChordVoicings 
+          bodyDiv={bodyDiv}
+          tableStyle={tableStyle}
+          scale={scale}
+          onOff={onOff}
+          buildChord={this.buildChord}
+          closedSeventh={closedSeventh}
+          drop2={drop2}
+          drop3={drop3}
+          drop23={drop23}
+          drop24={drop24}
+          doubleDrop24={doubleDrop24}
+        />
       </div>
     )
   }
