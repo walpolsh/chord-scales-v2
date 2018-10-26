@@ -12,8 +12,8 @@ import SeventhChordVoicings from './containers/SeventhChordVoicings'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       notes: Chromatic,
       value: '',
@@ -21,7 +21,6 @@ class App extends Component {
       cycle: Cycles[0],
       onOff: 0,
     }
-
     this.changeKey = this.changeKey.bind(this)
     this.changeScale = this.changeScale.bind(this)
     this.changeCycle = this.changeCycle.bind(this)
