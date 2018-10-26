@@ -6,6 +6,7 @@ import { permute } from '../constants/helpers'
 import {headerDiv, headerStyle, bodyDiv, tableStyle}  from '../styles/styles'
 import Header from '../containers/Header'
 import ScaleFormulas from '../containers/ScaleFormulas'
+import SeventhChordCycles from '../containers/SeventhChordCycles'
 
 class Scales extends Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class Scales extends Component {
     this.changeCycle = this.changeCycle.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
     this.buildScale = this.buildScale.bind(this)
+    this.buildChord = this.buildChord.bind(this)
+    this.buildCycle = this.buildCycle.bind(this)
   }
 
   changeKey(event) {
@@ -55,29 +58,32 @@ class Scales extends Component {
       onOff: e,
     })
   }
+
   buildScale(arr) { 
+    let notes = this.state.notes;
     let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
-    return [scaleNums, scaleNotes.map(x => this.state.notes[x]), scaleName, scaleChord]
+    return [scaleNums, scaleNotes.map(x => notes[x]), scaleName, scaleChord]
+  }
+
+  buildChord(scale, voicing, index) {
+    let arr = this.buildScale(scale)
+    let degrees = arr[index].filter((n, i) => i % 2 === 0)
+    return degrees.map((note, i) => permute(degrees, i))
+    .map(x => voicing(x))
+  }
+
+  buildCycle(arr) {
+    return this.state.cycle.map(x => arr[x])
   }
 
   render() {
-    let notes = this.state.notes;
-    let cycles = this.state.cycle;
     let scale = this.state.scale
     let onOff = this.state.onOff
     
 
 
-    const buildChord = (scale, voicing, index) => {
-      let arr = this.buildScale(scale)
-      let degrees = arr[index].filter((n, i) => i % 2 === 0)
-      return degrees.map((note, i) => permute(degrees, i))
-      .map(x => voicing(x))
-    }
 
-    const buildCycle = (arr) => {
-      return cycles.map(x => arr[x])
-    }
+   
 
     return (
       <div>
@@ -98,32 +104,14 @@ class Scales extends Component {
           buildScale={this.buildScale}
         />
 
-        <h1>Seventh Chord Cycles</h1>
-    
-
-          <table style={tableStyle}>
-            {scale.map((scales, j) =>  {
-              let chordCycles = buildCycle(scales[3][0][0]).map(y => y)
-              let numCycles = buildCycle(this.buildScale(scales)[0]).map(x=> x)
-              let noteCycles = buildCycle(this.buildScale(scales)[1]).map(x=> x)
-              
-              return(
-              <tbody key={j + 1}> 
-                { onOff === '1' ?
-                <tr>
-                  <th key={scales}>{`${scales[2]}`}</th>
-                    {chordCycles.map((y, i) => <td key={i}>{numCycles[i]} {y}</td>)}
-                </tr>
-                :
-                <tr>
-                  <th key={scales}>{`${scales[2]}`}</th>
-                  {chordCycles.map((y, i) => <td key={i}>{noteCycles[i]} {y}</td>)}
-                </tr>
-                  
-                }
-              </tbody>
-            )})}
-          </table>
+        <SeventhChordCycles 
+          bodyDiv={bodyDiv}
+          tableStyle={tableStyle}
+          scale={scale}
+          onOff={onOff}
+          buildScale={this.buildScale}
+          buildCycle={this.buildCycle}
+        />
 
         <h1>Seventh Chord Vocings</h1>
         {scale.map((mode, j) => {
@@ -146,60 +134,60 @@ class Scales extends Component {
                 this.state.onOff === '1' ?
                 <tr>
                   <th>Closed</th>
-                  {buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, closedSeventh, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                  <th>Closed</th>
-                  {buildChord(mode, closedSeventh, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, closedSeventh, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
               }
               {
                 this.state.onOff === '1' ?
                 <tr>
                   <th>Drop 2</th>
-                   {buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                   {this.buildChord(mode, drop2, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                  <th>Drop 2</th>
-                  {buildChord(mode, drop2, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, drop2, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
               }
               {
                 this.state.onOff === '1' ?
                 <tr>
                 <th>Drop 3</th>
-                  {buildChord(mode, drop3, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, drop3, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                 <th>Drop 3</th>
-                 {buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                 {this.buildChord(mode, drop3, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                </tr>
               }
               {
                 this.state.onOff === '1' ?
                 <tr>
                 <th>Drop 2/3</th>
-                  {buildChord(mode, drop23, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, drop23, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                 <th>Drop 2/3</th>
-                 {buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                 {this.buildChord(mode, drop23, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                </tr>
               }
               {
                 this.state.onOff === '1' ?
                 <tr>
                  <th>Drop 2/4</th>
-                  {buildChord(mode, drop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, drop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                  <th>Drop 2/4</th>
-                  {buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, drop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
 
               }
@@ -207,12 +195,12 @@ class Scales extends Component {
                 this.state.onOff === '1' ?
                 <tr>
                  <th>Double Drop 2/3</th>
-                  {buildChord(mode, doubleDrop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, doubleDrop24, 0).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
                 :
                 <tr>
                  <th>Double Drop 2/3</th>
-                  {buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
+                  {this.buildChord(mode, doubleDrop24, 1).map((degree, i) => <td key={i}>{degree.join(' ')}</td>)}
                 </tr>
               }
 

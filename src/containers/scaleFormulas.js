@@ -2,7 +2,7 @@ import React from 'react';
 
 ////https://levelup.gitconnected.com/react-component-patterns-ab1f09be2c82
 
-const Table = (props) => {
+const ScaleFormulas = (props) => {
   return (
   <div style={props.bodyDiv}>
     <h1>Scale Formulas</h1>
@@ -35,4 +35,4 @@ const Table = (props) => {
 }
 
 
-export default Table
+export default ScaleFormulas
