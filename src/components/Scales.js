@@ -62,9 +62,8 @@ class Scales extends Component {
   }
 
   buildScale(arr) { 
-    let notes = this.state.notes;
     let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
-    return [scaleNums, scaleNotes.map(x => notes[x]), scaleName, scaleChord]
+    return [scaleNums, scaleNotes.map(x => this.state.notes[x]), scaleName, scaleChord]
   }
 
   buildChord(scale, voicing, index) {
@@ -123,6 +122,7 @@ class Scales extends Component {
           drop24={drop24}
           doubleDrop24={doubleDrop24}
         />
+
       </div>
     )
   }
