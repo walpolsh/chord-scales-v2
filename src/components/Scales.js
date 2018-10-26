@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import {Chromatic, Major, MelodicMinor, HarmonicMinor } from '../constants/scales';
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from '../constants/chords';
 import { Cycles } from '../constants/chords';
-import permute from '../constants/helpers'
+import { permute } from '../constants/helpers'
+import styles from '../styles/styles'
+import Header from '../containers/Header'
 
+
+const {headerDiv, headerStyle, bodyDiv, table} = styles
 
 class Scales extends Component {
   constructor(props) {
@@ -15,20 +19,24 @@ class Scales extends Component {
       cycle: Cycles[0],
       onOff: 0,
     }
+
+    this.changeKey = this.changeKey.bind(this)
+    this.changeScale = this.changeScale.bind(this)
+    this.changeCycle = this.changeCycle.bind(this)
+    this.handleSwitch = this.handleSwitch.bind(this)
   }
 
   //first index of keys becomes last index
-  changeKey = (event) => {
+  changeKey(event) {
     let keys = Chromatic;
     const e = event.target.value
-    console.log(e)
     this.setState({
       notes: permute(keys, e),
     })
   }
 
   //scale is chosen by select option event
-  changeScale = (event) => {
+  changeScale(event) {
     let scales = [Major, MelodicMinor, HarmonicMinor];
     const e = event.target.value
     this.setState({
@@ -37,7 +45,7 @@ class Scales extends Component {
   }
 
   //cycle is chosen by select option event
-  changeCycle = (event) => {
+  changeCycle(event) {
     let cycles = Cycles;
     const e = event.target.value
     this.setState({
@@ -45,7 +53,7 @@ class Scales extends Component {
     })
   }
   
-  handleSwitch = (event) => {
+  handleSwitch(event) {
     const e = event.target.value;
     this.setState({
       onOff: e,
@@ -53,9 +61,10 @@ class Scales extends Component {
   }
 
   render() {
-
+    let notes = this.state.notes;
+    let cycles = this.state.cycle
+    
     const buildScale = (arr) => { 
-      let notes = this.state.notes;
       let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
       return [scaleNums, scaleNotes.map(x => notes[x]), scaleName, scaleChord]
     }
@@ -68,83 +77,19 @@ class Scales extends Component {
     }
 
     const buildCycle = (arr) => {
-      let cycles = this.state.cycle
       return cycles.map(x => arr[x])
     }
 
-    const headerStyle = {
-      position: 'fixed',
-      top: '0',
-      width: '100%',
-      textAlign: 'center',
-      background: 'gray',
-      color: 'white',
-      paddingBottom: '20px',
-    }
-    const bodyDiv = {
-      paddingTop: '100px',
-    }
-    const headerDiv = {
-      float: 'left',
-      width: '24%',
-    }
-
-    const table = {
-        width: '100%',
-        tableLayout: 'fixed',
-        textAlign: 'center',
-        borderSpacing: 10,
-        background: 'gray',
-        color: 'white',
-    }
     return (
       <div>
-        <div style={headerStyle}>
-          <h1>Chord Scale Encyclopedia</h1>
-          <div style={headerDiv}>
-            <h2>Key</h2>
-              <select onChange={this.changeKey}>
-                <option value='0'>C</option>
-                <option value='1'>Db</option>
-                <option value='2'>D</option>
-                <option value='3'>Eb</option>
-                <option value='4'>E</option>
-                <option value='5'>F</option>
-                <option value='6'>Gb</option>
-                <option value='7'>G</option>
-                <option value='8'>Ab</option>
-                <option value='9'>A</option>
-                <option value='10'>Bb</option>
-                <option value='11'>B</option>
-              </select>
-            </div>
-            <div style={headerDiv}>
-            <h2>Scale</h2>
-              <select onChange={this.changeScale}>
-                <option value='0'>Major</option>
-                <option value='1'>Melodic Minor</option>
-                <option value='2'>Harmonic Minor</option>
-              </select>
-            </div>
-            <div style={headerDiv}>
-            <h2>Notes/Numerals</h2>
-              <select onChange={this.handleSwitch}>
-                <option value='0'>Notes</option>
-                <option value='1'>Numerals</option>
-              </select>
-            </div>
-            <div style={headerDiv}>
-            <h2>Cycle</h2>
-              <select onChange={this.changeCycle}>
-                <option value='0'>Cycle 2</option>
-                <option value='1'>Cycle 3</option>
-                <option value='2'>Cycle 4</option>
-                <option value='3'>Cycle 5</option>
-                <option value='4'>Cycle 6</option>
-                <option value='5'>Cycle 7</option>
-              </select>
-            </div>
-          </div>
+        <Header 
+          headerDiv={headerDiv}
+          headerStyle={headerStyle}
+          changeKey={this.changeKey}
+          changeScale={this.changeScale}
+          changeCycle={this.changeCycle}
+          handleSwitch={this.handleSwitch}
+        />
 
       <div style={bodyDiv}>
         <h1>Scale Formulas</h1>
