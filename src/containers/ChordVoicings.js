@@ -1,5 +1,4 @@
 import React from 'react';
-import { closedSeventh } from '../constants/chords';
 
 const ChordVoicings = (props) => {
   return (
