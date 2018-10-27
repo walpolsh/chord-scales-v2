@@ -6,12 +6,11 @@ const ChordVoicings = (props) => {
       <th>{props.name}</th>
       {props.scale.map(mode => {
         return (
-          <d>{this.props.buildChord(mode)}</d>
+          <d>{props.buildChord(mode)}</d>
         )
       })}
     </tr>
   )
 }
 
-//name, 
 export default ChordVoicings

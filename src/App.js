@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Chromatic, Major, MelodicMinor, HarmonicMinor } from './constants/scales';
+import {Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor } from './constants/scales';
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   changeScale(event) {
-    let scales = [Major, MelodicMinor, HarmonicMinor];
+    let scales = [Major, MelodicMinor, HarmonicMinor, HarmonicMajor];
     const e = event.target.value
     this.setState({
       scale: scales[e],
@@ -69,9 +69,17 @@ class App extends Component {
 
   buildChord(scale, voicing, index) {
     let arr = this.buildScale(scale)
-    let degrees = arr[index].filter((n, i) => i % 2 === 0)
-    return degrees.map((note, i) => permute(degrees, i))
-    .map(x => voicing(x))
+    let degreesA = arr[index].filter((n, i) => i % 2 === 0)
+    let degreesB = arr[index].filter((n, i) => i % 2 !== 0)
+    degreesB.push(degreesA[0])
+    let permuteA = degreesA.map((note, i) => permute(degreesA, i)).map(x => voicing(x))
+    let permuteB = degreesB.map((note, i) => permute(degreesB, i)).map(x => voicing(x))
+    let result = permuteA.map((note, i) => {
+      let arr = []
+      arr.push(permuteA[i], permuteB[i])
+      return arr
+    })
+    return result.flat()
   }
 
   buildCycle(arr) {
@@ -116,7 +124,9 @@ class App extends Component {
           tableStyle={tableStyle}
           scale={scale}
           onOff={onOff}
+          buildScale={this.buildScale}
           buildChord={this.buildChord}
+          buildCycle={this.buildCycle}
           closedSeventh={closedSeventh}
           drop2={drop2}
           drop3={drop3}

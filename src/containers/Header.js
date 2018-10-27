@@ -27,6 +27,7 @@ const Header = (props) =>
                 <option value='0'>Major</option>
                 <option value='1'>Melodic Minor</option>
                 <option value='2'>Harmonic Minor</option>
+                <option value='3'>Harmonic Major</option>
               </select>
             </div>
             <div style={props.headerDiv}>

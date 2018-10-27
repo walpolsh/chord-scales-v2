@@ -4,7 +4,11 @@ const Voicings = (props) => {
   return (
                 <tr>
                   <th>{props.name}</th>
-                  {props.buildChord(props.mode, props.voicing, props.index).map((degree, i) => <td key={i++}>{degree.join(' ')}</td>)}
+                  {props.buildCycle(props.buildChord(props.mode, props.voicing, props.index).map((degree, i) => 
+                    <td key={i++}>
+                      {degree.join(' ')}
+                    </td>
+                  ))}
                 </tr>
   )
 }

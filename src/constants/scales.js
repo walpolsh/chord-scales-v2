@@ -35,7 +35,6 @@ for (let i = 0; i < 7; i++) {
   melodicMinorChords.push(permuteAlt(["min/maj7", "min7", "maj7#5", "dom7", "dom7", "min7b5", "min7b5"], i))
 }
 
-
 const Melodic = [['1', '2', 'b3', '4', '5', '6', '7'], [0, 2, 3, 5, 7, 9, 11],['Melodic Minor'], [melodicMinorChords[0]]]
 const Dorianb2 = [['1','b2','b3','4','5','6','b7'], [0, 1, 3, 5, 7, 9, 10], ['Dorian b2'], [melodicMinorChords[1]]]
 const LydianAug = [['1', '2', '3', '#4', '#5', '6', '7'], [0, 2, 4, 6, 8, 9, 11], ['Lydian #5'], [melodicMinorChords[2]]]
@@ -59,4 +58,35 @@ const DorianSharp4 = [['1', '2', 'b3', '#4', '5', '6', 'b7'], [0, 2, 3, 6, 7, 9,
 const PhrygianNat3 = [['1', 'b2', '3', '4', '5', 'b6', 'b7'], [0, 1, 4, 5, 7, 8, 10], ['Phrygian ♮3'], [harmonicMinorChords[4]]]
 const LydianSharp2 = [['1', '#2', '3', '#4', '5', '6', '7'], [0, 3, 4, 6, 7, 9, 11], ['Lydian #2'], [harmonicMinorChords[5]]]
 const Locrianb4Alt7 = [['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8, 9], ['Locrian b4 bb7'], [harmonicMinorChords[6]]]
+
 export const HarmonicMinor = [Harmonic, LocrianNat6, IonianSharp5, DorianSharp4, PhrygianNat3, LydianSharp2, Locrianb4Alt7]
+
+//Harmonic Major
+let harmonicMajorChords = []
+
+for (let i = 0; i < 7; i++) {
+  harmonicMajorChords.push(permuteAlt(["maj7", "min7b5 ", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
+}
+// const Ionian = [['1', '2', '3', '4', '5', '6', '7'], [0, 2, 4, 5, 7, 9, 11],['Ionian'], [majorChords[0]]]
+
+const HarmonicMaj = [['1', '2', '3', '4', '5', 'b6', '7'], [0, 2, 4, 5, 7, 8, 11],['Harmonic Major'], [harmonicMajorChords[0]]]
+const Dorianb5 = [['1', '2', 'b3', '4', 'b5', '6', 'b7'], [0, 2, 3, 5, 6, 9, 10], ['Dorian b5'], [harmonicMajorChords[1]]]
+const Phrygianb4 = [['1', 'b2', 'b3', 'b4', '5', 'b6', 'b7'], [0, 1, 3, 4, 7, 8, 10], ['Phrygian b4'], [harmonicMajorChords[2]]]
+const Lydianb3 = [['1', '2', 'b3', '#4', '5', '6', 'b7'], [0, 2, 3, 6, 7, 9, 10], ['Lydian b3'], [harmonicMajorChords[3]]]
+const Mixolydianb2 = [['1', 'b2', '3', '4', '5', '6', 'b7'], [0, 1, 4, 5, 7, 8, 10], ['Dorian b2'], [harmonicMajorChords[4]]]
+
+const LydianSharp2Sharp5 = [['1', '#2', '3', '#4', '#5', '6', '7'], [0, 3, 4, 6, 8, 9, 11], ['Lydian #2 #5'], [harmonicMajorChords[5]]]
+const Locrianbb7 = [['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8, 9], ['Locrian bb7'], [harmonicMajorChords[6]]]
+
+export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixolydianb2, LydianSharp2Sharp5, Locrianbb7]
+
+// Hungarian minor
+// ['1','2','b3','#4','5','b6','7']
+// ['1','b2','3','4','b5','6','b7']
+// ['1','#2','3','4','#5','6','7']
+// ['1','b2','bb3','4','b5','b6','bb7']
+// ['1','b2','3','4','5','b6','7']
+// ['1','#2','3','#4','5','#6','7']
+// ['1','b2','b3','b4','5','b6','bb7']
+
+

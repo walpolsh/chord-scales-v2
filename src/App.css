@@ -1,7 +1,18 @@
 
 
 th {
-  text-align: center
+  text-align: center;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid rgb(60, 60, 60);
+
+}
+
+
+
+td {
+  border-bottom: 1px solid #333;
+  border-right: 1px solid rgb(60, 60, 60);
+
 }
 
 h1 {

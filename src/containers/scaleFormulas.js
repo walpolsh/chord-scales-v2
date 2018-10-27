@@ -9,7 +9,6 @@ const ScaleFormulas = (props) => {
     <table style={props.tableStyle}>
       {props.scale.map(( scales, i ) => {
         let [nums, notes, scaleName] = props.buildScale( scales )
-        console.log(props.buildCycle(nums))
         return (
         <tbody key={ i++ } style={ {  borderSpacing: 20 }}>
           { 
