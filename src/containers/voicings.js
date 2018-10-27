@@ -2,14 +2,14 @@ import React from 'react';
 
 const Voicings = (props) => {
   return (
-                <tr>
-                  <th>{props.name}</th>
-                  {props.buildCycle(props.buildChord(props.mode, props.voicing, props.index).map((degree, i) => 
-                    <td key={i++}>
-                      {degree.join(' ')}
-                    </td>
-                  ))}
-                </tr>
+    <tr>
+      <th>{props.name}</th>
+      {props.buildCycle(props.buildChord(props.mode, props.voicing, props.index).map((degree, i) => 
+        <td key={i++}>
+          {degree.join(' ')}
+        </td>
+      ))}
+    </tr>
   )
 }
 

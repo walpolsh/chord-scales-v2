@@ -4,11 +4,14 @@ import {Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianM
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
-import {headerDiv, headerStyle, bodyDiv, tableStyle, appStyle, th, h1, h2}  from './styles/styles'
+import {headerDiv, headerStyle, bodyDiv, tableStyle, appStyle}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
 import SeventhChordCycles from './containers/SeventhChordCycles'
 import SeventhChordVoicings from './containers/SeventhChordVoicings'
+import Intervals from './containers/Intervals/Intervals'
+import intervalArray from './constants/intervals'
+
 
 
 class App extends Component {
@@ -20,6 +23,7 @@ class App extends Component {
       scale: Major,
       cycle: Cycles[0],
       onOff: 0,
+      interval: intervalArray[0],
     }
 
     this.changeKey = this.changeKey.bind(this)
@@ -48,10 +52,16 @@ class App extends Component {
   }
 
   changeCycle(event) {
-    let cycles = Cycles;
     const e = event.target.value
+    this.changeInterval(e)
     this.setState({
-      cycle: cycles[e],
+      cycle: Cycles[e],
+    })
+  }
+
+  changeInterval(e) {
+    this.setState({
+      interval: intervalArray[e],
     })
   }
   
@@ -85,7 +95,6 @@ class App extends Component {
   buildCycle(arr) {
     return this.state.cycle.map(x => arr[x])
   }
-
   render() {
     let scale = this.state.scale
     let onOff = this.state.onOff
@@ -109,6 +118,18 @@ class App extends Component {
           buildScale={this.buildScale}
           buildCycle={this.buildCycle}
         />
+        
+        <Intervals 
+          bodyDiv={bodyDiv}
+          tableStyle={tableStyle}
+          scale={scale}
+          onOff={onOff}
+          interval={this.state.interval}
+          buildScale={this.buildScale}
+          buildChord={this.buildChord}
+          buildCycle={this.buildCycle}
+        />
+        
 
         <SeventhChordCycles 
           bodyDiv={bodyDiv}

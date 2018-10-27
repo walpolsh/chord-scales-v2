@@ -7,16 +7,17 @@ th {
 
 }
 
-
-
 td {
   border-bottom: 1px solid #333;
   border-right: 1px solid rgb(60, 60, 60);
-
 }
 
 tr:hover {
   background: black;
+}
+
+tr:hover td:hover {
+  background: rgb(0, 106, 25);
 }
 
 h1 {
