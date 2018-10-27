@@ -67,7 +67,6 @@ let harmonicMajorChords = []
 for (let i = 0; i < 7; i++) {
   harmonicMajorChords.push(permuteAlt(["maj7", "min7b5 ", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
 }
-// const Ionian = [['1', '2', '3', '4', '5', '6', '7'], [0, 2, 4, 5, 7, 9, 11],['Ionian'], [majorChords[0]]]
 
 const HarmonicMaj = [['1', '2', '3', '4', '5', 'b6', '7'], [0, 2, 4, 5, 7, 8, 11],['Harmonic Major'], [harmonicMajorChords[0]]]
 const Dorianb5 = [['1', '2', 'b3', '4', 'b5', '6', 'b7'], [0, 2, 3, 5, 6, 9, 10], ['Dorian b5'], [harmonicMajorChords[1]]]
@@ -81,12 +80,25 @@ const Locrianbb7 = [['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8
 export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixolydianb2, LydianSharp2Sharp5, Locrianbb7]
 
 // Hungarian minor
-// ['1','2','b3','#4','5','b6','7']
-// ['1','b2','3','4','b5','6','b7']
-// ['1','#2','3','4','#5','6','7']
-// ['1','b2','bb3','4','b5','b6','bb7']
-// ['1','b2','3','4','5','b6','7']
-// ['1','#2','3','#4','5','#6','7']
-// ['1','b2','b3','b4','5','b6','bb7']
+
+
+let hungarianMinorChords = []
+
+for (let i = 0; i < 7; i++) {
+  hungarianMinorChords.push(permuteAlt(["maj7", "min7b5 ", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
+}
+
+const HungarianMin = [['1','2','b3','#4','5','b6','7'], [0, 2, 3, 6, 7, 8, 11],['Hungarian Minor'], [hungarianMinorChords[0]]]
+const Oriental = [['1','b2','3','4','b5','6','b7'], [0, 1, 4, 5, 6, 9, 10], ['Oriental'], [hungarianMinorChords[1]]]
+const IonianAugmented2 = [['1','#2','3','4','#5','6','7'], [0, 3, 4, 5, 8, 9, 11], ['Ionian Augmented 2'], [hungarianMinorChords[2]]]
+const Locrainbb3bb7 = [['1','b2','bb3','4','b5','b6','bb7'], [0, 1, 2, 5, 6, 8, 9], ['Locrain bb3 bb7'], [hungarianMinorChords[3]]]
+const DoubleHarmonic = [['1','b2','3','4','5','b6','7'], [0, 1, 4, 5, 7, 8, 11], ['Double Harmonic'], [hungarianMinorChords[4]]]
+const LydianSharp2Sharp6 = [['1','#2','3','#4','5','#6','7'], [0, 3, 4, 6, 7, 10, 11], ['Lydian #2 #6'], [hungarianMinorChords[5]]]
+const Phyrgianb4bb7 = [['1','b2','b3','b4','5','b6','bb7'], [0, 1, 3, 4, 7, 8, 9], ['Phyrgian b4 bb7'], [hungarianMinorChords[6]]]
+
+export const HungarianMinor = [ HungarianMin, Oriental, IonianAugmented2, Locrainbb3bb7, DoubleHarmonic, LydianSharp2Sharp6, Phyrgianb4bb7]
+// 
+// 
+// 
 
 

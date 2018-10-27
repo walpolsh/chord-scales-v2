@@ -21,9 +21,9 @@ const SeventhChordVoicings = (props) => {
                   <th>Voicing</th>
                   {
                     props.onOff === '1' ?
-                      props.buildCycle(nums.map(x => <th key={j ++}>{x}</th>))
-                    :
                       props.buildCycle(notes.map(x => <th key={j ++}>{x}</th>))
+                    :
+                      props.buildCycle(nums.map(x => <th key={j ++}>{x}</th>))
                   }
                 </tr>
               </thead>
