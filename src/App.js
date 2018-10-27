@@ -4,7 +4,7 @@ import {Chromatic, Major, MelodicMinor, HarmonicMinor } from './constants/scales
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
-import {headerDiv, headerStyle, bodyDiv, tableStyle}  from './styles/styles'
+import {headerDiv, headerStyle, bodyDiv, tableStyle, appStyle, th, h1, h2}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
 import SeventhChordCycles from './containers/SeventhChordCycles'
@@ -21,6 +21,7 @@ class App extends Component {
       cycle: Cycles[0],
       onOff: 0,
     }
+
     this.changeKey = this.changeKey.bind(this)
     this.changeScale = this.changeScale.bind(this)
     this.changeCycle = this.changeCycle.bind(this)
@@ -82,7 +83,7 @@ class App extends Component {
     let onOff = this.state.onOff
     
     return (
-      <div className='App'>
+      <div style={appStyle}>
         <Header 
           headerDiv={headerDiv}
           headerStyle={headerStyle}
@@ -98,6 +99,7 @@ class App extends Component {
           scale={scale}
           onOff={onOff}
           buildScale={this.buildScale}
+          buildCycle={this.buildCycle}
         />
 
         <SeventhChordCycles 

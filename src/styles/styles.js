@@ -24,4 +24,11 @@
       color: 'white',
   }
 
-
+  export const appStyle = {
+    backgroundColor: '#282c34',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '12px',
+    color: 'white',
+  }
+  

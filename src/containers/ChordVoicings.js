@@ -7,7 +7,6 @@ const ChordVoicings = (props) => {
       {props.scale.map(mode => {
         return (
           <d>{this.props.buildChord(mode)}</d>
-
         )
       })}
     </tr>
