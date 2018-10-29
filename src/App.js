@@ -132,6 +132,16 @@ class App extends Component {
           handleHighlight={(e) => this.handleHighlight(e)}
         />
 
+        <SeventhChordCycles 
+          bodyDiv={bodyDiv}
+          tableStyle={tableStyle}
+          scale={scale}
+          onOff={onOff}
+          buildScale={this.buildScale}
+          buildCycle={this.buildCycle}
+          handleHighlight={(e) => this.handleHighlight(e)}
+        />
+
         <Intervals 
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
@@ -142,18 +152,6 @@ class App extends Component {
           buildChord={this.buildChord}
           buildCycle={this.buildCycle}
           handleHighlight={(e) => this.handleHighlight(e)}
-        />
-        
-
-        <SeventhChordCycles 
-          bodyDiv={bodyDiv}
-          tableStyle={tableStyle}
-          scale={scale}
-          onOff={onOff}
-          buildScale={this.buildScale}
-          buildCycle={this.buildCycle}
-          handleHighlight={(e) => this.handleHighlight(e)}
-
         />
 
         <SeventhChordVoicings 

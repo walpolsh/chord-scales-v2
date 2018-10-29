@@ -5,17 +5,20 @@ table {
 th {
   text-align: center;
   border: 1px solid #333;
+  width: 70px;
 }
 
 td {
   border: 1px solid #333; 
+  width: 70px;
+
 }
 
 .highlighted {
   background: black;
 }
 
-td:hover th:hover {
+td:hover {
   background: green;
 }
 tr:hover {
