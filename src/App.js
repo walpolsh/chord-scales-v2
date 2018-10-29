@@ -33,6 +33,7 @@ class App extends Component {
     this.buildScale = this.buildScale.bind(this)
     this.buildChord = this.buildChord.bind(this)
     this.buildCycle = this.buildCycle.bind(this)
+    this.handleHighlight = this.handleHighlight.bind(this)
   }
 
   changeKey(event) {
@@ -70,6 +71,17 @@ class App extends Component {
     this.setState({
       onOff: e,
     })
+  }
+
+  handleHighlight(e) {
+    console.log(e)
+      if (e.currentTarget.style.background === 'grey') {
+        e.currentTarget.style.background = 'yellow';
+        e.currentTarget.style.color = 'black';
+      } else {
+        e.currentTarget.style.background = 'grey';
+        e.currentTarget.style.color = 'white';
+      }
   }
 
   buildScale(arr) { 
@@ -117,8 +129,9 @@ class App extends Component {
           onOff={onOff}
           buildScale={this.buildScale}
           buildCycle={this.buildCycle}
+          handleHighlight={(e) => this.handleHighlight(e)}
         />
-        
+
         <Intervals 
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
@@ -128,6 +141,7 @@ class App extends Component {
           buildScale={this.buildScale}
           buildChord={this.buildChord}
           buildCycle={this.buildCycle}
+          handleHighlight={(e) => this.handleHighlight(e)}
         />
         
 
@@ -138,6 +152,8 @@ class App extends Component {
           onOff={onOff}
           buildScale={this.buildScale}
           buildCycle={this.buildCycle}
+          handleHighlight={(e) => this.handleHighlight(e)}
+
         />
 
         <SeventhChordVoicings 
@@ -154,7 +170,10 @@ class App extends Component {
           drop23={drop23}
           drop24={drop24}
           doubleDrop24={doubleDrop24}
+          handleHighlight={(e) => this.handleHighlight(e)}
+
         />
+
 
       </div>
     )

@@ -2,6 +2,7 @@
   export const headerStyle = {
     position: 'fixed',
     top: '0',
+    height: '15%',
     width: '100%',
     textAlign: 'center',
     background: 'gray',
@@ -19,16 +20,16 @@
       width: '100%',
       tableLayout: 'fixed',
       textAlign: 'center',
-      borderSpacing: 10,
       background: 'gray',
       color: 'white',
   }
 
+  
   export const appStyle = {
     backgroundColor: '#282c34',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '12px',
+    fontSize: '14px',
     color: 'white',
   }
   

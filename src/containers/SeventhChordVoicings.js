@@ -21,13 +21,13 @@ const SeventhChordVoicings = (props) => {
                   <th>Voicing</th>
                   {
                     props.onOff === '1' ?
-                      props.buildCycle(nums.map((x, i) => <th key={j ++}>{x} {chordNames[i]}</th>))
+                      props.buildCycle(nums.map((x, i) => <td key={j ++}>{x} {chordNames[i]}</td>))
                     :
-                      props.buildCycle(notes.map((x, i) => <th key={j ++}>{x} {chordNames[i]}</th>))
+                      props.buildCycle(notes.map((x, i) => <td key={j ++}>{x} {chordNames[i]}</td>))
                   }
                 </tr>
               </thead>
-              <tbody>
+              <tbody key={j++}>
               {
                 props.onOff === '1' ?
                 voicings.map((x, i) => {
@@ -37,7 +37,7 @@ const SeventhChordVoicings = (props) => {
                     mode={mode}
                     buildChord={props.buildChord}
                     buildCycle={props.buildCycle}
-
+                    handleHighlight={props.handleHighlight}
                     voicing={x}
                     index={0}
                     name={voicingNames[i]}
@@ -52,6 +52,7 @@ const SeventhChordVoicings = (props) => {
                      mode={mode}
                      buildChord={props.buildChord}
                      buildCycle={props.buildCycle}
+                     handleHighlight={props.handleHighlight}
                      voicing={x}
                      index={1}
                      name={voicingNames[i]}

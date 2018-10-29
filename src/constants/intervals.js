@@ -1,4 +1,4 @@
-const second = [1, 2, 3, 4, 5, 6, 0]
+const second = [0, 1, 2, 3, 4, 5, 6]
 const third = [2, 3, 4, 5, 6, 0, 1]
 const fourth = [3, 4, 5, 6, 0, 1, 2]
 const fifth = [4, 5, 6, 0, 1, 2, 3]

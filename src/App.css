@@ -1,23 +1,25 @@
-
+table {
+  border-collapse: collapse
+}
 
 th {
   text-align: center;
-  border-bottom: 1px solid #333;
-  border-right: 1px solid rgb(60, 60, 60);
-
+  border: 1px solid #333;
 }
 
 td {
-  border-bottom: 1px solid #333;
-  border-right: 1px solid rgb(60, 60, 60);
+  border: 1px solid #333; 
 }
 
-tr:hover {
+.highlighted {
   background: black;
 }
 
-tr:hover td:hover {
-  background: rgb(0, 106, 25);
+td:hover th:hover {
+  background: green;
+}
+tr:hover {
+  background: black;
 }
 
 h1 {

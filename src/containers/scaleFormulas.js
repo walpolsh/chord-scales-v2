@@ -7,29 +7,28 @@ const ScaleFormulas = (props) => {
   <div style={props.bodyDiv}>
     <h1>Scale Formulas</h1>
     <table style={props.tableStyle}>
+    <tbody style={ {  borderSpacing: 20 }}>
       {props.scale.map(( scales, i ) => {
         let [nums, notes, scaleName] = props.buildScale( scales )
         return (
-        <tbody key={ i++ } style={ {  borderSpacing: 20 }}>
-          { 
+
             props.onOff === '1' ?
             <tr key={ i++ }>
-              <th key={ i++ }>{ `${ scaleName }` }</th>
+              <th key={ i++ }>{ 
+                `${ scaleName }`
+              }</th>
               { props.buildCycle(nums.map(x => <td key={ i++ }>{ x }</td>)) }
             </tr>
-
             :
-
-            <tr>
+            <tr onClick={props.handleHighlight}>
               <th key={ i++ }>{ `${ scaleName }` }</th>
               { props.buildCycle(notes.map(x => <td key={ i ++ }>{ x }</td>)) }
             </tr>
-          }
+          )
+          
+        })}
+        
         </tbody>
-        )
-
-      })}
-
     </table>
 
   </div >

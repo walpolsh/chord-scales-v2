@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChordVoicings = (props) => {
   return (
-    <tr>
+    <tr onClick={props.handleHighlight}>
       <th>{props.name}</th>
       {props.scale.map(mode => {
         return (
