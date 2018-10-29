@@ -2,13 +2,12 @@
   export const headerStyle = {
     position: 'fixed',
     top: '0',
-    height: '15%',
     width: '100%',
     textAlign: 'center',
     background: 'gray',
     color: 'white',
-    paddingBottom: '20px',
   }
+
   export const bodyDiv = {
     paddingTop: '100px',
   }
@@ -17,7 +16,6 @@
     width: '24%',
   }
   export const tableStyle = {
-      width: '100%',
       tableLayout: 'fixed',
       textAlign: 'center',
       background: 'gray',
@@ -31,5 +29,6 @@
     justifyContent: 'center',
     fontSize: '14px',
     color: 'white',
+    width: '1000px',
   }
   

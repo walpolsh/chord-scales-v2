@@ -16,12 +16,12 @@ const SeventhChordCycles = (props) => {
           <tbody key={j + 1}> 
             { props.onOff === '1' ?
             <tr onClick={props.handleHighlight}>
-              <td key={scales}>{`${scaleName}`}</td>
+              <th key={scales}>{`${scaleName}`}</th>
                 {chordCycles.map((y, i) => <td key={i}>{numCycles[i]} {y}</td>)}
             </tr>
             :
             <tr onClick={props.handleHighlight}>
-              <td key={scales}>{`${scaleName}`}</td>
+              <th key={scales}>{`${scaleName}`}</th>
               {chordCycles.map((y, i) => <td key={i}>{noteCycles[i]} {y}</td>)}
             </tr>
             }

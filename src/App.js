@@ -74,7 +74,6 @@ class App extends Component {
   }
 
   handleHighlight(e) {
-    console.log(e)
       if (e.currentTarget.style.background === 'grey') {
         e.currentTarget.style.background = 'yellow';
         e.currentTarget.style.color = 'black';

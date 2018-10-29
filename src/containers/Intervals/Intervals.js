@@ -8,33 +8,34 @@ const Intervals = (props) => {
         <tbody>
         {props.scale.map((mode, j) => {
           let [nums, notes, name] = props.buildScale(mode)
-          let chords = props.buildScale(mode)[0][0]
           let noteMap = props.interval.map((x, i) => notes[x])
           let numMap = props.interval.map((x, i) => nums[x])
           let noteResult = notes.map((note, i) => {
             let arr = []
             if(props.interval[0] === 0) {
-              arr.push(<td>{notes[i]}</td>)
-              arr.push( <td> {noteMap[i]} </td> )
-            } 
+              arr.push(<td key={j++}>{notes[i]}</td>)
+            }  else {
+              arr.push(<td key={j++}>{notes[i]}</td>)
+              arr.push( <td key={j++}>{noteMap[i]} </td> )
+
+            }
             return arr
           })
           let numResult = nums.map((num, i) => {
             let arr = []
             if(props.interval[0] === 0) {
-              arr.push(<td>{nums[i]}</td>)
+              arr.push(<td key={j++}>{nums[i]}</td>)
             } else {
-              arr.push(<td>{nums[i]}</td>)
-              arr.push( <td> {numMap[i]} </td> )
+              arr.push(<td key={j++}>{nums[i]}</td>)
+              arr.push( <td key={j++}> {numMap[i]} </td> )
             }
             return arr
           })
           return (
-
-              <tr onClick={props.handleHighlight}>
-                {name.map((x, i) => <th>{x}</th>)}
+              <tr key={j++} onClick={props.handleHighlight}>
+                {name.map((x, i) => <th key={i++}>{x}</th>)}
                 {props.onOff === '1' ? numResult.map((x) => x) : noteResult.map(x => x)  }
-                </tr>
+              </tr>
         )})}
         </tbody>
       </table>  
@@ -50,10 +51,10 @@ const Intervals = (props) => {
           let noteResult = notes.map((note, i) => {
             let arr = []
             if (props.interval[0] === 0) {
-              arr.push( <td>{notes[i]}{chords[i]}</td> )
+              arr.push( <td key={j++}>{notes[i]}{chords[i]}</td> )
             } else {
-              arr.push( <td>{notes[i]}{chords[i]}</td> )
-              arr.push( <td>{noteMap[i]}{chordMap[i]}</td> )
+              arr.push( <td key={j++}>{notes[i]}{chords[i]}</td> )
+              arr.push( <td key={j++}>{noteMap[i]}{chordMap[i]}</td> )
               
             }
             return arr
@@ -61,18 +62,17 @@ const Intervals = (props) => {
           let numResult = nums.map((num, i) => {
             let arr = []
             if (props.interval[0] === 0) {
-              arr.push( <td>{nums[i]}{chords[i]}</td> )
+              arr.push( <td key={j++}>{nums[i]}{chords[i]}</td> )
             } else {
-              arr.push( <td>{nums[i]}{chords[i]}</td> )
-              arr.push( <td>{numMap[i]}{chordMap[i]}</td> )
-              
+              arr.push( <td key={j++}>{nums[i]}{chords[i]}</td> )
+              arr.push( <td key={j++}>{numMap[i]}{chordMap[i]}</td> )
             }
             return arr
 
           })
           return (
-              <tr onClick={props.handleHighlight}>
-                  {name.map((x, i) => <td>{x}</td>)}
+              <tr key={j++} onClick={props.handleHighlight}>
+                  {name.map((x, i) => <th key={i++}>{x}</th>)}
                 { props.onOff === '1' ? numResult.map((x) => x) : noteResult.map(x => x) }
               </tr>
         )})}

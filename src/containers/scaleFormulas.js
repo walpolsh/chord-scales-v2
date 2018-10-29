@@ -20,7 +20,7 @@ const ScaleFormulas = (props) => {
               { props.buildCycle(nums.map(x => <td key={ i++ }>{ x }</td>)) }
             </tr>
             :
-            <tr onClick={props.handleHighlight}>
+            <tr key={i++} onClick={props.handleHighlight}>
               <th key={ i++ }>{ `${ scaleName }` }</th>
               { props.buildCycle(notes.map(x => <td key={ i ++ }>{ x }</td>)) }
             </tr>

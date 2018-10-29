@@ -5,12 +5,14 @@ table {
 th {
   text-align: center;
   border: 1px solid #333;
-  width: 70px;
+  width: 120px;
+  height: 50px;
 }
 
 td {
   border: 1px solid #333; 
-  width: 70px;
+  width: 100px;
+  height: 50px;
 
 }
 
