@@ -6,6 +6,7 @@
     textAlign: 'center',
     background: 'gray',
     color: 'white',
+    marginBottom: '10px',
   }
 
   export const bodyDiv = {
@@ -20,15 +21,14 @@
       textAlign: 'center',
       background: 'gray',
       color: 'white',
+      width: '100%',
   }
-
   
   export const appStyle = {
     backgroundColor: '#282c34',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '12px',
     color: 'white',
-    width: '1000px',
   }
   

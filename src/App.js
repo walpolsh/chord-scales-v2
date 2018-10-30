@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor } from './constants/scales';
+import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor } from './constants/scales';
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
@@ -75,11 +75,9 @@ class App extends Component {
 
   handleHighlight(e) {
       if (e.currentTarget.style.background === 'grey') {
-        e.currentTarget.style.background = 'yellow';
-        e.currentTarget.style.color = 'black';
+        e.currentTarget.style.background = 'green';
       } else {
         e.currentTarget.style.background = 'grey';
-        e.currentTarget.style.color = 'white';
       }
   }
 
@@ -106,6 +104,7 @@ class App extends Component {
   buildCycle(arr) {
     return this.state.cycle.map(x => arr[x])
   }
+
   render() {
     let scale = this.state.scale
     let onOff = this.state.onOff
@@ -115,12 +114,16 @@ class App extends Component {
         <Header 
           headerDiv={headerDiv}
           headerStyle={headerStyle}
+          currentKey={this.state.notes[0]}
+          currentScale={this.state.scale[0][2]}
+          currentCycle={this.state.cycle}
+          onOff={this.state.onOff}
           changeKey={this.changeKey}
           changeScale={this.changeScale}
           changeCycle={this.changeCycle}
           handleSwitch={this.handleSwitch}
         />
-        
+
         <ScaleFormulas 
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}

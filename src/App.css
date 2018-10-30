@@ -5,15 +5,12 @@ table {
 th {
   text-align: center;
   border: 1px solid #333;
-  width: 120px;
-  height: 50px;
+  
 }
 
 td {
   border: 1px solid #333; 
-  width: 100px;
-  height: 50px;
-
+  
 }
 
 .highlighted {
@@ -33,4 +30,9 @@ h1 {
 
 h2 {
   font-size: 16px;
+}
+
+.headerDiv {
+  float: left;
+  width: 25%;
 }

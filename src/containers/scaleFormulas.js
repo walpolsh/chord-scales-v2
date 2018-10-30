@@ -4,7 +4,7 @@ import React from 'react';
 
 const ScaleFormulas = (props) => { 
   return (
-  <div style={props.bodyDiv}>
+  <div >
     <h1>Scale Formulas</h1>
     <table style={props.tableStyle}>
     <tbody style={ {  borderSpacing: 20 }}>
