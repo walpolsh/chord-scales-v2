@@ -125,6 +125,7 @@ class App extends Component {
         />
 
         <ScaleFormulas 
+          style={{paddingTop: '150px'}}
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
           scale={scale}

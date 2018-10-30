@@ -1,10 +1,12 @@
 import React from 'react';
 
 ////https://levelup.gitconnected.com/react-component-patterns-ab1f09be2c82
-
+const style = {
+  paddingTop: '150px',
+}
 const ScaleFormulas = (props) => { 
   return (
-  <div >
+  <div style={style}>
     <h1>Scale Formulas</h1>
     <table style={props.tableStyle}>
     <tbody style={ {  borderSpacing: 20 }}>
