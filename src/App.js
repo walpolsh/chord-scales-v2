@@ -75,7 +75,7 @@ class App extends Component {
 
   handleHighlight(e) {
       if (e.currentTarget.style.background === 'grey') {
-        e.currentTarget.style.background = 'green';
+        e.currentTarget.style.background = 'black';
       } else {
         e.currentTarget.style.background = 'grey';
       }
@@ -125,7 +125,6 @@ class App extends Component {
         />
 
         <ScaleFormulas 
-          style={{paddingTop: '150px'}}
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
           scale={scale}

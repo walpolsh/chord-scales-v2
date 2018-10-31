@@ -13,14 +13,18 @@ td {
   
 }
 
+thead {
+  background: black;
+}
+
 .highlighted {
   background: black;
 }
 
 td:hover {
-  background: green;
+  background: black;
 }
-tr:hover {
+tr:hover th:hover {
   background: black;
 }
 

@@ -5,26 +5,26 @@ const style = {
   paddingTop: '150px',
 }
 const ScaleFormulas = (props) => { 
+  const {handleHighlight, scale, tableStyle, buildCycle, buildScale, onOff} = props;
   return (
   <div style={style}>
     <h1>Scale Formulas</h1>
-    <table style={props.tableStyle}>
+    <table style={tableStyle}>
     <tbody style={ {  borderSpacing: 20 }}>
-      {props.scale.map(( scales, i ) => {
-        let [nums, notes, scaleName] = props.buildScale( scales )
+      {scale.map(( scales, i ) => {
+        let [nums, notes, scaleName] = buildScale( scales )
         return (
-
-            props.onOff === '1' ?
-            <tr key={ i++ }>
+            onOff === '1' ?
+            <tr key={ i++ } onClick={handleHighlight}>
               <th key={ i++ }>{ 
                 `${ scaleName }`
               }</th>
-              { props.buildCycle(nums.map(x => <td key={ i++ }>{ x }</td>)) }
+              { buildCycle(nums.map(x => <td key={ i++ }>{ x }</td>)) }
             </tr>
             :
-            <tr key={i++} onClick={props.handleHighlight}>
+            <tr key={i++} onClick={handleHighlight}>
               <th key={ i++ }>{ `${ scaleName }` }</th>
-              { props.buildCycle(notes.map(x => <td key={ i ++ }>{ x }</td>)) }
+              { buildCycle(notes.map(x => <td key={ i ++ }>{ x }</td>)) }
             </tr>
           )
           

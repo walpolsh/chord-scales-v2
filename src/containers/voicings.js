@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Voicings = (props) => {
+  const {handleHighlight, name, buildChord, buildCycle, mode, voicing, index} = props;
   return (
-    <tr onClick={props.handleHighlight}>
-      <th>{props.name}</th>
-      {props.buildCycle(props.buildChord(props.mode, props.voicing, props.index).map((degree, i) => 
+    <tr onClick={handleHighlight}>
+      <th>{name}</th>
+      {buildCycle(buildChord(mode, voicing, index).map((degree, i) => 
         <td key={i++}>
           {degree.join(' ')}
         </td>

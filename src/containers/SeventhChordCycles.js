@@ -1,26 +1,27 @@
 import React from 'react';
 
 const SeventhChordCycles = (props) => {
+  const {tableStyle, scale, buildScale, buildCycle, handleHighlight, onOff} = props;
   return (
     <div>
       <h1>Seventh Chord Cycles</h1>
-      <table style={props.tableStyle}>
-        {props.scale.map((scales, j) =>  {
-        let scaleName = props.buildScale( scales )[2]
+      <table style={tableStyle}>
+        {scale.map((scales, j) =>  {
+        let scaleName = buildScale( scales )[2]
         let chordNames = scales[3][0][0]
-        let chordCycles = props.buildCycle(chordNames).map(y => y)
-        let numCycles = props.buildCycle(props.buildScale(scales)[0]).map(x=> x)
-        let noteCycles = props.buildCycle(props.buildScale(scales)[1]).map(x=> x)
+        let chordCycles = buildCycle(chordNames).map(y => y)
+        let numCycles = buildCycle(buildScale(scales)[0]).map(x=> x)
+        let noteCycles = buildCycle(buildScale(scales)[1]).map(x=> x)
           
           return(
           <tbody key={j + 1}> 
-            { props.onOff === '1' ?
-            <tr onClick={props.handleHighlight}>
+            { onOff === '1' ?
+            <tr onClick={handleHighlight}>
               <th key={scales}>{`${scaleName}`}</th>
                 {chordCycles.map((y, i) => <td key={i}>{numCycles[i]} {y}</td>)}
             </tr>
             :
-            <tr onClick={props.handleHighlight}>
+            <tr onClick={handleHighlight}>
               <th key={scales}>{`${scaleName}`}</th>
               {chordCycles.map((y, i) => <td key={i}>{noteCycles[i]} {y}</td>)}
             </tr>
