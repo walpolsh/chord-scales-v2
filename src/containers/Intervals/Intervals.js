@@ -32,7 +32,7 @@ const Intervals = (props) => {
             return arr
           })
           return (
-              <tr key={j++} onClick={props.handleHighlight}>
+              <tr key={j++} className='no-highlight' onClick={props.handleHighlight}>
                 {name.map((x, i) => <th key={i++}>{x}</th>)}
                 {props.onOff === '1' ? numResult.map((x) => x) : noteResult.map(x => x)  }
               </tr>
@@ -71,7 +71,7 @@ const Intervals = (props) => {
 
           })
           return (
-              <tr key={j++} onClick={props.handleHighlight}>
+              <tr key={j++} className='no-highlight' onClick={props.handleHighlight}>
                   {name.map((x, i) => <th key={i++}>{x}</th>)}
                 { props.onOff === '1' ? numResult.map((x) => x) : noteResult.map(x => x) }
               </tr>

@@ -13,14 +13,14 @@ const ScaleFormulas = (props) => {
         let [nums, notes, scaleName] = buildScale( scales )
         return (
             onOff === '1' ?
-            <tr key={ i++ } onClick={handleHighlight}>
+            <tr key={ i++ } className='no-highlight' onClick={handleHighlight}>
               <th key={ i++ }>{ 
                 `${ scaleName }`
               }</th>
               { buildCycle(nums.map(x => <td key={ i++ }>{ x }</td>)) }
             </tr>
             :
-            <tr key={i++} onClick={handleHighlight}>
+            <tr key={i++} className='no-highlight' onClick={handleHighlight}>
               <th key={ i++ }>{ `${ scaleName }` }</th>
               { buildCycle(notes.map(x => <td key={ i ++ }>{ x }</td>)) }
             </tr>

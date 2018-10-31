@@ -18,17 +18,16 @@
     width: '24%',
   }
   export const tableStyle = {
-      tableLayout: 'fixed',
-      textAlign: 'center',
-      background: 'gray',
-      color: 'white',
-      width: '100%',
+    tableLayout: 'fixed',
+    textAlign: 'center',
+    background: 'gray',
+    color: 'white',
+    width: '100%',
   }
   
   export const appStyle = {
     backgroundColor: '#282c34',
     alignItems: 'center',
-    justifyContent: 'center',
     fontSize: '12px',
     color: 'white',
   }

@@ -5,18 +5,20 @@ table {
 th {
   text-align: center;
   border: 1px solid #333;
-  
 }
 
 td {
   border: 1px solid #333; 
-  
+  height: 30px;
 }
 
 thead {
   background: black;
 }
 
+.no-highlight {
+  background: grey;
+}
 .highlighted {
   background: black;
 }
@@ -47,42 +49,26 @@ h2 {
   background-color: #333;
   position: fixed;
   width:100%;
+  margin:0;
 }
 
-.navLeft {
-  float: left;
-}
-
-.navRight {
-  float: right;
-}
 
 .topnav #myMenu {
   display: none;
 }
 
-.topnav a {
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  display: block;
-}
-
-.topnav a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 
 .navhead {
   display: flex;
   text-align: center;
+  justify-content: center;
+}
+.navhead div {
+  flex:1;
+  color: black;
+  font-size: 30px;
 }
 
 .navhead > h1{
-  flex:1;
-  padding-top: 13px;
+  flex:4;
 }

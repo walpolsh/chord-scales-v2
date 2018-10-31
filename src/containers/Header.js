@@ -8,9 +8,9 @@ const Header = (props) => {
       <div>
         <div className='navhead'>
           <h1>Chord Scale Encyclopedia</h1>
-          <a onClick={toggleMenu}>
+          <div href='#' onClick={toggleMenu}>
               <i className="fa fa-bars"></i>
-          </a>
+          </div>
         </div>
         <div id="myMenu">
           <div className='headerDiv'>

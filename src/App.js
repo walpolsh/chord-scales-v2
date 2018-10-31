@@ -75,13 +75,7 @@ class App extends Component {
     })
   }
 
-  handleHighlight(e) {
-      if (e.currentTarget.style.background === 'grey') {
-        e.currentTarget.style.background = 'black';
-      } else {
-        e.currentTarget.style.background = 'grey';
-      }
-  }
+
 
   buildScale(arr) { 
     let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
@@ -105,6 +99,14 @@ class App extends Component {
 
   buildCycle(arr) {
     return this.state.cycle.map(x => arr[x])
+  }
+
+  handleHighlight(e) {
+    if (e.currentTarget.className === 'no-highlight') {
+      e.currentTarget.className = 'highlighted';
+    } else {
+      e.currentTarget.className = 'no-highlight';
+    }
   }
 
   toggleMenu () {
