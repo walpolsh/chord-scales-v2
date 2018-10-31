@@ -24,6 +24,7 @@ class App extends Component {
       cycle: Cycles[0],
       onOff: 0,
       interval: intervalArray[0],
+      showMenu: false,
     }
 
     this.changeKey = this.changeKey.bind(this)
@@ -34,6 +35,7 @@ class App extends Component {
     this.buildChord = this.buildChord.bind(this)
     this.buildCycle = this.buildCycle.bind(this)
     this.handleHighlight = this.handleHighlight.bind(this)
+    this.toggleMenu = this.toggleMenu.bind(this)
   }
 
   changeKey(event) {
@@ -105,15 +107,30 @@ class App extends Component {
     return this.state.cycle.map(x => arr[x])
   }
 
+  toggleMenu () {
+    const x = document.getElementById('myMenu');
+    if (x.style.display === 'block') {
+      x.style.display = 'none'
+      this.setState({
+        showMenu: false
+      })
+    } else {
+      x.style.display = 'block'
+      this.setState({
+        showMenu: true
+      })
+    }
+  }
+
   render() {
     let scale = this.state.scale
     let onOff = this.state.onOff
     
     return (
       <div style={appStyle}>
-        <Header 
+        <Header
+          showMenu = {this.state.showMenu}
           headerDiv={headerDiv}
-          headerStyle={headerStyle}
           currentKey={this.state.notes[0]}
           currentScale={this.state.scale[0][2]}
           currentCycle={this.state.cycle}
@@ -122,9 +139,11 @@ class App extends Component {
           changeScale={this.changeScale}
           changeCycle={this.changeCycle}
           handleSwitch={this.handleSwitch}
+          toggleMenu={this.toggleMenu}
         />
 
         <ScaleFormulas 
+          showMenu= {this.state.showMenu}
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
           scale={scale}

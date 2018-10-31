@@ -19,7 +19,7 @@ for (let i = 0; i < 7; i++) {
   majorChords.push(permuteAlt(["maj7", "min7", "min7", "maj7", "dom7", "min7", "min7b5"], i))
 }
 
-const Ionian = [['1', '2', '3', '4', '5', '6', '7'], [0, 2, 4, 5, 7, 9, 11],['Major/Ionian'], [majorChords[0]]]
+const Ionian = [['1', '2', '3', '4', '5', '6', '7'], [0, 2, 4, 5, 7, 9, 11],['Major'], [majorChords[0]]]
 const Dorian = [['1','2','b3','4','5','6','b7'], [0, 2, 3, 5, 7, 9, 10], ['Dorian'], [majorChords[1]]]
 const Phrygian = [['1', 'b2', 'b3', '4', '5', 'b6', 'b7'], [0, 1, 3, 5, 7, 8, 10], ['Phrygian'], [majorChords[2]]]
 const Lydian = [['1', '2', '3', '#4', '5', '6 ', '7'], [0, 2, 4, 6, 7, 9, 11], ['Lydian'], [majorChords[3]]]

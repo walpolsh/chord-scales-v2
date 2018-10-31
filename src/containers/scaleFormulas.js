@@ -1,11 +1,9 @@
 import React from 'react';
 
 ////https://levelup.gitconnected.com/react-component-patterns-ab1f09be2c82
-const style = {
-  paddingTop: '150px',
-}
 const ScaleFormulas = (props) => { 
-  const {handleHighlight, scale, tableStyle, buildCycle, buildScale, onOff} = props;
+  const {handleHighlight, scale, tableStyle, buildCycle, buildScale, onOff, showMenu} = props;
+  const style = showMenu ? {paddingTop: '200px'} : {paddingTop: '60px'}
   return (
   <div style={style}>
     <h1>Scale Formulas</h1>

@@ -22,7 +22,7 @@ thead {
 }
 
 td:hover {
-  background: black;
+  background: green;
 }
 tr:hover th:hover {
   background: black;
@@ -38,5 +38,51 @@ h2 {
 
 .headerDiv {
   float: left;
-  width: 25%;
+  width: 24%;
+}
+
+.topnav {
+  top: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  width:100%;
+}
+
+.navLeft {
+  float: left;
+}
+
+.navRight {
+  float: right;
+}
+
+.topnav #myMenu {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.navhead {
+  display: flex;
+  text-align: center;
+}
+
+.navhead > h1{
+  flex:1;
+  padding-top: 13px;
 }

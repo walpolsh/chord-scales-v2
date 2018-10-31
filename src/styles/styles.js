@@ -7,6 +7,7 @@
     background: 'gray',
     color: 'white',
     marginBottom: '10px',
+    scrollable: 'true',
   }
 
   export const bodyDiv = {
