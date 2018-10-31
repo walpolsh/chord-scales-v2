@@ -4,12 +4,12 @@ import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, Hungarian
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
-import {headerDiv, headerStyle, bodyDiv, tableStyle, appStyle}  from './styles/styles'
+import {headerDiv, bodyDiv, tableStyle, appStyle}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
 import SeventhChordCycles from './containers/SeventhChordCycles'
 import SeventhChordVoicings from './containers/SeventhChordVoicings'
-import Intervals from './containers/Intervals/Intervals'
+// import Intervals from './containers/Intervals/Intervals'
 import intervalArray from './constants/intervals'
 
 
@@ -165,7 +165,7 @@ class App extends Component {
           handleHighlight={(e) => this.handleHighlight(e)}
         />
 
-        <Intervals 
+        {/* <Intervals 
           bodyDiv={bodyDiv}
           tableStyle={tableStyle}
           scale={scale}
@@ -175,7 +175,7 @@ class App extends Component {
           buildChord={this.buildChord}
           buildCycle={this.buildCycle}
           handleHighlight={(e) => this.handleHighlight(e)}
-        />
+        /> */}
 
         <SeventhChordVoicings 
           bodyDiv={bodyDiv}

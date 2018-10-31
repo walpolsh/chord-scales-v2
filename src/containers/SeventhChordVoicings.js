@@ -10,7 +10,8 @@ const SeventhChordVoicings = (props) => {
     <div>
         <h1>Seventh Chord Vocings</h1>
         {scale.map((mode, j) => {
-          let [nums, notes] = buildScale( mode, mode)
+          let buildMode = buildScale( mode, mode)
+          
           const [scaleName, chordName] = [mode[2], mode[3][0][0][0]]
           const chordNames = mode[3][0][0]  
           return (
@@ -21,7 +22,7 @@ const SeventhChordVoicings = (props) => {
                 <tr>
                   <th>Voicing</th>
                   {
-                      buildCycle(notes.map((x, i) => <td key={j ++}>{x} {chordNames[i]}</td>))
+                      buildCycle(buildMode[1].map((x, i) => <td key={j ++}>{x} {chordNames[i]}</td>))
                   }
                 </tr>
               </thead>
