@@ -84,17 +84,21 @@ class App extends Component {
 
   buildChord(scale, voicing, index) {
     let arr = this.buildScale(scale)
-    let degreesA = arr[index].filter((n, i) => i % 2 === 0)
-    let degreesB = arr[index].filter((n, i) => i % 2 !== 0)
-    degreesB.push(degreesA[0])
-    let permuteA = degreesA.map((note, i) => permute(degreesA, i)).map(x => voicing(x))
-    let permuteB = degreesB.map((note, i) => permute(degreesB, i)).map(x => voicing(x))
-    let result = permuteA.map((note, i) => {
-      let arr = []
-      arr.push(permuteA[i], permuteB[i])
-      return arr
-    })
-    return result.flat()
+    
+    const inversions =  arr[index].map((note, i) => permute(arr[index], i)).filter((n, i) => i % 2 ===0)
+
+    const fullScale = (arr) => {
+      let [one, two, three, four] = arr
+      let result = []
+      for (let i = 0; i < 7; i++) {
+        result.push([one[i], two[i], three[i], four[i]])
+      }
+      result.push(result[0])
+      return result.map(x => voicing(x))
+    }
+    
+    return fullScale(inversions)
+
   }
 
   buildCycle(arr) {
