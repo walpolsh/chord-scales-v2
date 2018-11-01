@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/chord-scales-v2/precache-manifest.f3d23999d324efb36e37deed7b79c8c0.js"
+  "/chord-scales-v2/precache-manifest.a34cc89e445d5520ca99a3565976db25.js"
 );
 
 workbox.clientsClaim();
