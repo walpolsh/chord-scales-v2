@@ -1,14 +1,29 @@
 import React from 'react';
+import { Major } from '../constants/scales'
 
 ////https://levelup.gitconnected.com/react-component-patterns-ab1f09be2c82
 const ScaleFormulas = (props) => { 
   const {handleHighlight, scale, tableStyle, buildCycle, buildScale, onOff, showMenu} = props;
-  const style = showMenu ? {paddingTop: '200px'} : {paddingTop: '60px'}
+  const style = showMenu ? {paddingTop: '320px'} : {paddingTop: '60px'}
   return (
   <div style={style}>
     <h1>Scale Formulas</h1>
     <table style={tableStyle}>
+    <thead>
+      <tr>
+        <th>Scale</th>
+        {
+          scale.map((scales, j) =>  {
+          let numCycles = buildCycle(buildScale(Major)[0][0]).map(x=> x)
+          return (
+            <th>{numCycles[j]}</th> 
+          )
+          })
+        }
+      </tr>
+    </thead>
     <tbody style={ {  borderSpacing: 20 }}>
+
       {scale.map(( scales, i ) => {
         let [nums, notes, scaleName] = buildScale( scales )
         return (

@@ -4,7 +4,7 @@ import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, Hungarian
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
-import {headerDiv, bodyDiv, tableStyle, appStyle}  from './styles/styles'
+import {headerDiv, bodyDiv, tableStyle}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
 import SeventhChordCycles from './containers/SeventhChordCycles'
@@ -22,7 +22,7 @@ class App extends Component {
       value: '',
       scale: Major,
       cycle: Cycles[0],
-      onOff: 0,
+      onOff: 1,
       interval: intervalArray[0],
       showMenu: false,
     }
@@ -133,7 +133,7 @@ class App extends Component {
     let onOff = this.state.onOff
     
     return (
-      <div style={appStyle}>
+      <div className="App">
         <Header
           showMenu = {this.state.showMenu}
           headerDiv={headerDiv}
@@ -147,57 +147,59 @@ class App extends Component {
           handleSwitch={this.handleSwitch}
           toggleMenu={this.toggleMenu}
         />
+        <div id="innerDiv">
+          <ScaleFormulas 
+            showMenu= {this.state.showMenu}
+            bodyDiv={bodyDiv}
+            tableStyle={tableStyle}
+            scale={scale}
+            onOff={onOff}
+            buildScale={this.buildScale}
+            buildCycle={this.buildCycle}
+            handleHighlight={(e) => this.handleHighlight(e)}
+          />
 
-        <ScaleFormulas 
-          showMenu= {this.state.showMenu}
-          bodyDiv={bodyDiv}
-          tableStyle={tableStyle}
-          scale={scale}
-          onOff={onOff}
-          buildScale={this.buildScale}
-          buildCycle={this.buildCycle}
-          handleHighlight={(e) => this.handleHighlight(e)}
-        />
+          <SeventhChordCycles 
+            bodyDiv={bodyDiv}
+            tableStyle={tableStyle}
+            scale={scale}
+            onOff={onOff}
+            buildScale={this.buildScale}
+            buildCycle={this.buildCycle}
+            handleHighlight={(e) => this.handleHighlight(e)}
+          />
 
-        <SeventhChordCycles 
-          bodyDiv={bodyDiv}
-          tableStyle={tableStyle}
-          scale={scale}
-          onOff={onOff}
-          buildScale={this.buildScale}
-          buildCycle={this.buildCycle}
-          handleHighlight={(e) => this.handleHighlight(e)}
-        />
+          {/* <Intervals 
+            bodyDiv={bodyDiv}
+            tableStyle={tableStyle}
+            scale={scale}
+            onOff={onOff}
+            interval={this.state.interval}
+            buildScale={this.buildScale}
+            buildChord={this.buildChord}
+            buildCycle={this.buildCycle}
+            handleHighlight={(e) => this.handleHighlight(e)}
+          /> */}
 
-        {/* <Intervals 
-          bodyDiv={bodyDiv}
-          tableStyle={tableStyle}
-          scale={scale}
-          onOff={onOff}
-          interval={this.state.interval}
-          buildScale={this.buildScale}
-          buildChord={this.buildChord}
-          buildCycle={this.buildCycle}
-          handleHighlight={(e) => this.handleHighlight(e)}
-        /> */}
+          <SeventhChordVoicings 
+            bodyDiv={bodyDiv}
+            tableStyle={tableStyle}
+            scale={scale}
+            onOff={onOff}
+            buildScale={this.buildScale}
+            buildChord={this.buildChord}
+            buildCycle={this.buildCycle}
+            closedSeventh={closedSeventh}
+            drop2={drop2}
+            drop3={drop3}
+            drop23={drop23}
+            drop24={drop24}
+            doubleDrop24={doubleDrop24}
+            handleHighlight={(e) => this.handleHighlight(e)}
 
-        <SeventhChordVoicings 
-          bodyDiv={bodyDiv}
-          tableStyle={tableStyle}
-          scale={scale}
-          onOff={onOff}
-          buildScale={this.buildScale}
-          buildChord={this.buildChord}
-          buildCycle={this.buildCycle}
-          closedSeventh={closedSeventh}
-          drop2={drop2}
-          drop3={drop3}
-          drop23={drop23}
-          drop24={drop24}
-          doubleDrop24={doubleDrop24}
-          handleHighlight={(e) => this.handleHighlight(e)}
+          />
 
-        />
+        </div>
 
 
       </div>

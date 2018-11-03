@@ -1,4 +1,5 @@
 import React from 'react';
+import { Major } from '../constants/scales'
 
 const SeventhChordCycles = (props) => {
   const {tableStyle, scale, buildScale, buildCycle, handleHighlight, onOff} = props;
@@ -6,6 +7,21 @@ const SeventhChordCycles = (props) => {
     <div>
       <h1>Seventh Chord Cycles</h1>
       <table style={tableStyle}>
+        <thead>
+          <tr>
+            <th>Scale</th>
+            {
+              scale.map((scales, j) =>  {
+              let numCycles = buildCycle(buildScale(Major)[0][0]).map(x=> x)
+              return (
+                <th>{numCycles[j]}</th> 
+              )
+              })
+            }
+          </tr>
+        </thead>
+        <tbody>
+        
         {scale.map((scales, j) =>  {
         let scaleName = buildScale( scales )[2]
         let chordNames = scales[3][0][0]
@@ -14,20 +30,20 @@ const SeventhChordCycles = (props) => {
         let noteCycles = buildCycle(buildScale(scales)[1]).map(x=> x)
           
           return(
-          <tbody key={j + 1}> 
-            { onOff === '1' ?
-            <tr className='no-highlight' onClick={handleHighlight}>
+
+            onOff === '1' ?
+            <tr key={j++} className='no-highlight' onClick={handleHighlight}>
               <th key={scales}>{`${scaleName}`}</th>
                 {chordCycles.map((y, i) => <td key={i}>{numCycles[i]} {y}</td>)}
             </tr>
             :
-            <tr className='no-highlight' onClick={handleHighlight}>
+            <tr key={j++} className='no-highlight' onClick={handleHighlight}>
               <th key={scales}>{`${scaleName}`}</th>
               {chordCycles.map((y, i) => <td key={i}>{noteCycles[i]} {y}</td>)}
             </tr>
-            }
-          </tbody>
+            
         )})}
+          </tbody>
       </table>
 
     </div>
