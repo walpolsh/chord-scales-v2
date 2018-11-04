@@ -60,11 +60,13 @@ h2 {
 .headerDiv {
   float: left;
   width: 24%;
+
 }
 
 .buttonContainer {
   display: grid;
   grid-auto-flow: row;
+
 }
 
 .areaA {
@@ -92,6 +94,7 @@ h2 {
 .topnav #myMenu {
   display: none;
 }
+
 
 
 .navhead {

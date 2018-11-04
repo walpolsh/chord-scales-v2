@@ -14,9 +14,10 @@ const ScaleFormulas = (props) => {
         <th>Scale</th>
         {
           scale.map((scales, j) =>  {
+          let i = j
           let numCycles = buildCycle(buildScale(Major)[0][0]).map(x=> x)
           return (
-            <th>{numCycles[j]}</th> 
+            <th key={i++} >{numCycles[j]}</th> 
           )
           })
         }

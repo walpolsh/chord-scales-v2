@@ -2,7 +2,6 @@ import React from 'react';
 
 const Header = (props) => {
   const {onOff, currentKey, changeKey, currentScale, changeScale, changeCycle, currentCycle, handleSwitch, toggleMenu} = props;
-  console.log(onOff)
   return (
     <div className="topnav">
       <div>
@@ -52,7 +51,7 @@ const Header = (props) => {
             <h2>{onOff === '1' ? 'Numerals' : 'Notes'}</h2>
             <div className='buttonContainer'>
                 <button onClick={handleSwitch} value='0'>Notes</button>
-                <button onClick={handleSwitch} value='1'>Nums</button>
+                <button onClick={handleSwitch} value='1'>Numerals</button>
             </div>
           </div>
           <div className='headerDiv'>
