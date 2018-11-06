@@ -86,7 +86,7 @@ export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixol
 let hungarianMinorChords = []
 
 for (let i = 0; i < 7; i++) {
-  hungarianMinorChords.push(permuteAlt(["maj7", "min7b5 ", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
+  hungarianMinorChords.push(permuteAlt(["maj7", "maj7b5 ", "maj7#5", "dim7/bb3", "maj7", "maj7", "min/maj6"], i))
 }
 
 const HungarianMin = [['1','2','b3','#4','5','b6','7'], [0, 2, 3, 6, 7, 8, 11],['Hungarian Minor'], [hungarianMinorChords[0]]]

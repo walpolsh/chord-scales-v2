@@ -4,7 +4,7 @@ import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, Hungarian
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
-import {headerDiv, bodyDiv, tableStyle}  from './styles/styles'
+import {tableStyle}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
 import SeventhChordCycles from './containers/SeventhChordCycles'
@@ -35,7 +35,6 @@ class App extends Component {
     this.buildChord = this.buildChord.bind(this)
     this.buildCycle = this.buildCycle.bind(this)
     this.handleHighlight = this.handleHighlight.bind(this)
-    this.toggleMenu = this.toggleMenu.bind(this)
   }
 
   changeKey(event) {
@@ -75,8 +74,6 @@ class App extends Component {
     })
   }
 
-
-
   buildScale(arr) { 
     let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
     return [scaleNums, scaleNotes.map(x => this.state.notes[x]), scaleName, scaleChord]
@@ -85,11 +82,11 @@ class App extends Component {
   buildChord(scale, voicing, index) {
     let arr = this.buildScale(scale)
     
-    const inversions =  arr[index].map((note, i) => permute(arr[index], i)).filter((n, i) => i % 2 ===0)
+    const inversions =  arr[index].map((note, i) => permute(arr[index], i)).filter((n, i) => i % 2 === 0)
 
     const fullScale = (arr) => {
-      let [one, two, three, four] = arr
-      let result = []
+      const [one, two, three, four] = arr
+      const result = []
       for (let i = 0; i < 7; i++) {
         result.push([one[i], two[i], three[i], four[i]])
       }
@@ -113,21 +110,6 @@ class App extends Component {
     }
   }
 
-  toggleMenu () {
-    const x = document.getElementById('myMenu');
-    if (x.style.display === 'block') {
-      x.style.display = 'none'
-      this.setState({
-        showMenu: false
-      })
-    } else {
-      x.style.display = 'block'
-      this.setState({
-        showMenu: true
-      })
-    }
-  }
-
   render() {
     let scale = this.state.scale
     let onOff = this.state.onOff
@@ -135,22 +117,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header
-          showMenu = {this.state.showMenu}
-          headerDiv={headerDiv}
-          currentKey={this.state.notes[0]}
-          currentScale={this.state.scale[0][2]}
-          currentCycle={this.state.cycle}
           onOff={this.state.onOff}
           changeKey={this.changeKey}
           changeScale={this.changeScale}
           changeCycle={this.changeCycle}
           handleSwitch={this.handleSwitch}
-          toggleMenu={this.toggleMenu}
         />
         <div id="innerDiv">
           <ScaleFormulas 
-            showMenu= {this.state.showMenu}
-            bodyDiv={bodyDiv}
             tableStyle={tableStyle}
             scale={scale}
             onOff={onOff}
@@ -160,7 +134,6 @@ class App extends Component {
           />
 
           <SeventhChordCycles 
-            bodyDiv={bodyDiv}
             tableStyle={tableStyle}
             scale={scale}
             onOff={onOff}
@@ -182,7 +155,6 @@ class App extends Component {
           /> */}
 
           <SeventhChordVoicings 
-            bodyDiv={bodyDiv}
             tableStyle={tableStyle}
             scale={scale}
             onOff={onOff}

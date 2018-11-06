@@ -5,6 +5,19 @@
   color: black;
 }
 
+select {
+  border: 1px solid blue;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: orange;
+}
+
+select:hover {
+  border: 1px solid blue;
+  border-radius: 4px;
+  background-color: rgb(246, 218, 166);
+}
+
 
 table {
   border-collapse: collapse
@@ -25,11 +38,6 @@ thead {
   background: #78909C;
 }
 
-button {
-  border: 1px solid black;
-  background-color: #CFD8DC;
-  cursor: pointer;
-}
 
 #innerDiv {
   width: 99%;
@@ -42,12 +50,6 @@ button {
   background: #FFFF00;
 }
 
-td:hover {
-  background: #4CAF50;
-}
-tr:hover th:hover {
-  background: #4CAF50;
-}
 
 h1 {
   font-size: 20px
@@ -57,44 +59,31 @@ h2 {
   font-size: 16px;
 }
 
-.headerDiv {
-  float: left;
-  width: 24%;
-
-}
-
-.buttonContainer {
-  display: grid;
-  grid-auto-flow: row;
-
-}
-
-.areaA {
-  display: grid;
-}
-
-.areaB {
-  display: grid;
-}
-
-.areaC {
-  display: grid;
-}
 
 .topnav {
-  top: 0;
-  overflow: hidden;
-  background-color: #607D8B;
   position: fixed;
-  width:100%;
+  top: 0;
   margin:0;
+  overflow: hidden;
+  width: 100%;
+  
 }
 
-
-.topnav #myMenu {
-  display: none;
+.headerBox {
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  background-color: #78909C;
+  justify-content: center;
 }
 
+.menuBox {
+  background-color: #607D8B;
+  font-size: 14px;
+
+  display: flex;
+  justify-content: space-around;
+}
 
 
 .navhead {
