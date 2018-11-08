@@ -5,6 +5,13 @@
   color: black;
 }
 
+button {
+    border: 1px solid blue;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: #FF9800;
+}
+
 select {
   border: 1px solid blue;
   font-size: 14px;
@@ -113,4 +120,16 @@ h2 {
 
 .navhead > h1 {
   width: 80%;
+}
+
+@media (max-width: 767px) {
+  select {
+    font-size: 10px;
+  }
+  button {
+    font-size: 10px;
+  }
+  .menuBox {
+    font-size: 10px;
+  }
 }

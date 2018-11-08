@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Header = (props) => {
-  const {changeKey, changeScale, changeCycle, handleSwitch} = props;
+  const {changeKey, changeScale, changeCycle, handleSwitch, onOff} = props;
 
   return (
     <div className='topnav'>
@@ -10,6 +10,14 @@ const Header = (props) => {
         <h1>Chord Scale Encyclopedia</h1>
       </div>
       <div className='menuBox'>
+      <div>
+        {
+          onOff === '1' ?
+          <button onClick={handleSwitch} value='0'>Notes</button>
+          :
+          <button onClick={handleSwitch} value='1'>Numerals</button>
+        }
+      </div>
           Key:
           <select onChange={changeKey}>
             <option value='0'>C</option>
@@ -33,12 +41,8 @@ const Header = (props) => {
             <option value='2'>Harmonic Minor</option>
             <option value='3'>Harmonic Major</option>
             <option value='4'>Hungarian Minor</option>
-          </select>
-        <div> Switch
-        </div>
-          <select onChange={handleSwitch}>
-            <option value='0'>Notes</option>
-            <option value='1'>Numerals</option>
+            <option value='5'>Neapolitan Minor</option>
+            <option value='6'>Neapolitan Major</option>
           </select>
         <div> Cycle:
         </div>

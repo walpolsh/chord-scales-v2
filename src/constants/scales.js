@@ -86,7 +86,7 @@ export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixol
 let hungarianMinorChords = []
 
 for (let i = 0; i < 7; i++) {
-  hungarianMinorChords.push(permuteAlt(["min/maj7", "maj7/b5", "maj7/#5", "sus2/dim7", "maj7", "maj7", "min/b6"], i))
+  hungarianMinorChords.push(permuteAlt(["min/maj7", "maj7/b5", "maj7/#5", "dim7/sus2", "maj7", "maj7", "min/b6"], i))
 }
 
 const HungarianMin = [['1','2','b3','#4','5','b6','7'], [0, 2, 3, 6, 7, 8, 11],['Hungarian Minor'], [hungarianMinorChords[0]]]
@@ -99,3 +99,46 @@ const Phyrgianb4bb7 = [['1','b2','b3','b4','5','b6','bb7'], [0, 1, 3, 4, 7, 8, 9
 
 export const HungarianMinor = [ HungarianMin, Oriental, IonianAugmented2, Locrainbb3bb7, DoubleHarmonic, LydianSharp2Sharp6, Phyrgianb4bb7]
 
+// Neapolitan Minor
+let neapolitanMinorChords = []
+
+for (let i = 0; i < 7; i++) {
+  neapolitanMinorChords.push(permuteAlt(['min/maj7', 'maj7', 'dom7', 'minor7', 'dom7/b5', 'maj7', 'dim7/sus2'], i))
+}
+
+
+const Neapolitan =  [['1','b2','b3','4','5','b6','7'], [0, 1, 3, 5, 7, 8, 11] , ['Neapolitan'], [neapolitanMinorChords[0]]]
+const LydianSharp6 = [ ['1','2','3','#4','5', '#6', '7'], [0, 2, 4, 6, 7, 10, 11], ['Lydian #6'], [neapolitanMinorChords[1]]]
+const DominantSharp5 = [['1','2','3','4','#5','6','b7'], [0, 2, 4, 5, 8, 9, 11], ['Dominant #5'], [neapolitanMinorChords[2]]]
+const AeoleanSharp4 = [['1','2','b3','#4','5','b6','b7'], [0, 2, 3, 6, 7, 8, 10], ['Aeolean #4'], [neapolitanMinorChords[3]]]
+const LocrianNat3 = [['1','b2','3','4','b5','b6','b7'], [0, 1, 4, 5, 6, 8, 10], ['Locrian ♮3'], [neapolitanMinorChords[4]]]
+const IonianSharp2 = [['1','#2','3','4','5','6','7'], [0, 3, 4, 5, 7, 9, 11], ['Ionian #2'], [neapolitanMinorChords[5]]]
+const Altb3bb7 = [['1','b2','bb3','b4','b5','b6','bb7'], [0, 1, 2, 4, 6, 8, 9], ['Alt b3 bb7'], [neapolitanMinorChords[6]]]
+
+export const NeapolitanMinor = [Neapolitan, LydianSharp6, DominantSharp5, AeoleanSharp4, LocrianNat3, IonianSharp2, Altb3bb7]
+
+//Neapolitan Major
+
+let neapolitanMajorChords = []
+
+for (let i = 0; i < 7; i++) {
+  neapolitanMajorChords.push(permuteAlt(['min/maj7', 'maj7/#5', 'dom7/#5', 'dom7', 'dom7/b5', 'dim7', 'dim7/sus2'], i))
+}
+
+
+const NeapolitanMaj =  [['1', 'b2', 'b3', '4', '5', '6', '7'], [0, 1, 3, 5, 7, 9, 11] , ['Neapolitan Major'], [neapolitanMajorChords[0]]]
+const LydianAugSharp6 = [ ['1', '2', '3', '#4', '#5', '#6', '7'], [0, 2, 4, 6, 8, 10, 11] , ['Lydian Augmented #6'], [neapolitanMajorChords[1]]]
+const LydianDomSharp5 = [['1','2','3','#4','#5','#6','7'], [0, 2, 4, 6, 8, 10, 11] , ['Lydian Dominant #5'], [neapolitanMajorChords[2]]]
+const LydianMinor = [['1','2','3','#4','#5','6','b7'], [0, 2, 4, 6, 8, 9, 10] , ['Lydian Minor'], [neapolitanMajorChords[3]]]
+const MajorLocrian = [['1','2','3','4','b5','b6','b7'], [0, 2, 4, 5, 6, 8, 10] , ['Major Locrian'], [neapolitanMajorChords[4]]]
+const AltNat2 = [['1','2','b3','b4','b5','b6','b7'], [0, 2, 3, 4, 6, 8, 10] , ['Alt ♮2'], [neapolitanMajorChords[5]]]
+const AltNat3 = [['1','b2','bb3','b4','b5','b6','b7'], [0, 1, 2, 4, 6, 8, 10] , ['Alt ♮2'], [neapolitanMajorChords[6]]]
+
+export const NeapolitanMajor = [NeapolitanMaj, LydianAugSharp6, LydianDomSharp5, LydianMinor, MajorLocrian, AltNat2, AltNat3]
+
+
+/*
+major
+Neapolitan Major
+0, 2, 4, 5, 7, 9, 11
+*/

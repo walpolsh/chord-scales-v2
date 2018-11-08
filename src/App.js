@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor } from './constants/scales';
+import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor, NeapolitanMinor, NeapolitanMajor } from './constants/scales';
 import {closedSeventh, drop2, drop3, drop23, drop24, doubleDrop24} from './constants/chords';
 import { Cycles } from './constants/chords';
 import { permute } from './constants/helpers'
@@ -47,7 +47,8 @@ class App extends Component {
   }
 
   changeScale(event) {
-    let scales = [Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor];
+    let scales = [Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor, NeapolitanMinor, NeapolitanMajor];
+    console.log(NeapolitanMinor)
     const e = event.target.value
     this.setState({
       scale: scales[e],
