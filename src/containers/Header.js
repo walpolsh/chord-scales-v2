@@ -10,8 +10,7 @@ const Header = (props) => {
         <h1>Chord Scale Encyclopedia</h1>
       </div>
       <div className='menuBox'>
-        <div> Key 
-        </div>
+          Key:
           <select onChange={changeKey}>
             <option value='0'>C</option>
             <option value='1'>Db</option>
@@ -26,7 +25,7 @@ const Header = (props) => {
             <option value='10'>Bb</option>
             <option value='11'>B</option>
           </select>
-        <div> Scale 
+        <div> Scale: 
         </div>
           <select onChange={changeScale}> 
             <option value='0'>Major</option>
@@ -35,13 +34,13 @@ const Header = (props) => {
             <option value='3'>Harmonic Major</option>
             <option value='4'>Hungarian Minor</option>
           </select>
-        <div> Notation
+        <div> Switch
         </div>
           <select onChange={handleSwitch}>
             <option value='0'>Notes</option>
             <option value='1'>Numerals</option>
           </select>
-        <div> Cycle 
+        <div> Cycle:
         </div>
           <select onChange={changeCycle}>
             <option value='0'>2nds</option>

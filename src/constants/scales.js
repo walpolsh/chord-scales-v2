@@ -49,7 +49,7 @@ export const MelodicMinor = [Melodic, Dorianb2, LydianAug, LydianDom, Mixolydian
 let harmonicMinorChords = []
 
 for (let i = 0; i < 7; i++) {
-  harmonicMinorChords.push(permuteAlt(["min/maj7", "min7b5 ", "maj7#5", "min7", "dom7", "maj7", "dim7"], i))
+  harmonicMinorChords.push(permuteAlt(["min/maj7", "min7b5", "maj7#5", "min7", "dom7", "maj7", "dim7"], i))
 }
 
 const Harmonic = [['1', '2', 'b3', '4', '5', 'b6', '7'], [0, 2, 3, 5, 7, 8, 11],['Harmonic Minor'], [harmonicMinorChords[0]]]
@@ -66,7 +66,7 @@ export const HarmonicMinor = [Harmonic, LocrianNat6, IonianSharp5, DorianSharp4,
 let harmonicMajorChords = []
 
 for (let i = 0; i < 7; i++) {
-  harmonicMajorChords.push(permuteAlt(["maj7", "min7b5 ", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
+  harmonicMajorChords.push(permuteAlt(["maj7", "min7b5", "min7", "min/maj7", "dom7", "maj7#5", "dim7"], i))
 }
 
 const HarmonicMaj = [['1', '2', '3', '4', '5', 'b6', '7'], [0, 2, 4, 5, 7, 8, 11],['Harmonic Major'], [harmonicMajorChords[0]]]
@@ -86,7 +86,7 @@ export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixol
 let hungarianMinorChords = []
 
 for (let i = 0; i < 7; i++) {
-  hungarianMinorChords.push(permuteAlt(["maj7", "maj7b5 ", "maj7#5", "dim7/bb3", "maj7", "maj7", "min/maj6"], i))
+  hungarianMinorChords.push(permuteAlt(["min/maj7", "maj7/b5", "maj7/#5", "sus2/dim7", "maj7", "maj7", "min/b6"], i))
 }
 
 const HungarianMin = [['1','2','b3','#4','5','b6','7'], [0, 2, 3, 6, 7, 8, 11],['Hungarian Minor'], [hungarianMinorChords[0]]]
@@ -98,8 +98,4 @@ const LydianSharp2Sharp6 = [['1','#2','3','#4','5','#6','7'], [0, 3, 4, 6, 7, 10
 const Phyrgianb4bb7 = [['1','b2','b3','b4','5','b6','bb7'], [0, 1, 3, 4, 7, 8, 9], ['Phyrgian b4 bb7'], [hungarianMinorChords[6]]]
 
 export const HungarianMinor = [ HungarianMin, Oriental, IonianAugmented2, Locrainbb3bb7, DoubleHarmonic, LydianSharp2Sharp6, Phyrgianb4bb7]
-// 
-// 
-// 
-
 

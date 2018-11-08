@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import { Chromatic, Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor } from './constants/scales';
@@ -170,6 +171,13 @@ class App extends Component {
             handleHighlight={(e) => this.handleHighlight(e)}
 
           />
+
+          <footer>
+            <div>
+              <hr/> 
+              <a href="https://github.com/walpolsh">© Paul J. Walsh</a>
+            </div>
+          </footer>
 
         </div>
 

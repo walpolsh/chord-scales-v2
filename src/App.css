@@ -9,28 +9,28 @@ select {
   border: 1px solid blue;
   font-size: 14px;
   border-radius: 4px;
-  background-color: orange;
+  background-color: #FF9800;
 }
 
 select:hover {
   border: 1px solid blue;
   border-radius: 4px;
-  background-color: rgb(246, 218, 166);
+  background-color:#ffb74d;
 }
-
 
 table {
   border-collapse: collapse
 }
 
+
 th {
   text-align: center;
-  border: 1px solid #333;
+  border: 1px solid black;
   overflow: hidden;
 }
 
 td {
-  border: 1px solid #333; 
+  border: 1px solid black;
   height: 30px;
 }
 
@@ -43,11 +43,25 @@ thead {
   width: 99%;
 }
 
+footer {
+  position: inherit;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+
 .no-highlight {
   background: #ECEFF1;
 }
 .highlighted {
-  background: #FFFF00;
+  background-color:#FFF700;
+}
+
+.no-highlight:hover {
+  background-color: #FFFF8D;
 }
 
 
@@ -59,32 +73,31 @@ h2 {
   font-size: 16px;
 }
 
-
 .topnav {
   position: fixed;
   top: 0;
   margin:0;
   overflow: hidden;
-  width: 100%;
-  
+  width: 100%; 
 }
 
 .headerBox {
   display: flex;
-  flex-wrap: wrap;
   width:100%;
   background-color: #78909C;
   justify-content: center;
 }
 
 .menuBox {
+  padding: 0px 20px 0px 20px;
   background-color: #607D8B;
   font-size: 14px;
-
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  flex: 1;
+  min-width: 0;
 }
-
 
 .navhead {
   display: flex;
