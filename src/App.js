@@ -48,7 +48,6 @@ class App extends Component {
 
   changeScale(event) {
     let scales = [Major, MelodicMinor, HarmonicMinor, HarmonicMajor, HungarianMinor, NeapolitanMinor, NeapolitanMajor];
-    console.log(NeapolitanMinor)
     const e = event.target.value
     this.setState({
       scale: scales[e],

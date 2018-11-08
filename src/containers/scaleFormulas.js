@@ -7,7 +7,7 @@ const ScaleFormulas = (props) => {
   const style = showMenu ? {paddingTop: '320px'} : {paddingTop: '60px'}
   return (
   <div style={style}>
-    <h1>Scale Formulas</h1>
+    <h2>Scale Formulas</h2>
     <table style={tableStyle}>
     <thead>
       <tr>

@@ -8,7 +8,7 @@ const SeventhChordVoicings = (props) => {
 
   return (
     <div>
-        <h1>Seventh Chord Vocings</h1>
+        <h2>Seventh Chord Vocings</h2>
         {scale.map((mode, j) => {
           let buildMode = buildScale( mode, mode)
           

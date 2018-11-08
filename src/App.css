@@ -132,4 +132,12 @@ h2 {
   .menuBox {
     font-size: 10px;
   }
+
+  table {
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
 }

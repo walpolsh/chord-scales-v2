@@ -5,7 +5,7 @@ const SeventhChordCycles = (props) => {
   const {tableStyle, scale, buildScale, buildCycle, handleHighlight, onOff} = props;
   return (
     <div>
-      <h1>Seventh Chord Cycles</h1>
+      <h2>Seventh Chord Cycles</h2>
       <table style={tableStyle}>
         <thead>
           <tr>
