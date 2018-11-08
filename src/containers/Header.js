@@ -13,9 +13,9 @@ const Header = (props) => {
       <div>
         {
           onOff === '1' ?
-          <button onClick={handleSwitch} value='0'>Notes</button>
+          <button onClick={handleSwitch} value='0'>Nums</button>
           :
-          <button onClick={handleSwitch} value='1'>Numerals</button>
+          <button onClick={handleSwitch} value='1'>Notes</button>
         }
       </div>
           Key:

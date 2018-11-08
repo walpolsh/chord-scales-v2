@@ -80,6 +80,7 @@ const Locrianbb7 = [['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8
 
 export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixolydianb2, LydianSharp2Sharp5, Locrianbb7]
 
+
 // Hungarian minor
 
 
@@ -98,6 +99,7 @@ const LydianSharp2Sharp6 = [['1','#2','3','#4','5','#6','7'], [0, 3, 4, 6, 7, 10
 const Phyrgianb4bb7 = [['1','b2','b3','b4','5','b6','bb7'], [0, 1, 3, 4, 7, 8, 9], ['Phyrgian b4 bb7'], [hungarianMinorChords[6]]]
 
 export const HungarianMinor = [ HungarianMin, Oriental, IonianAugmented2, Locrainbb3bb7, DoubleHarmonic, LydianSharp2Sharp6, Phyrgianb4bb7]
+
 
 // Neapolitan Minor
 let neapolitanMinorChords = []
