@@ -80,14 +80,32 @@ const Locrianbb7 = [['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7'], [0, 1, 3, 4, 6, 8
 
 export const HarmonicMajor = [HarmonicMaj, Dorianb5, Phrygianb4, Lydianb3, Mixolydianb2, LydianSharp2Sharp5, Locrianbb7]
 
+// Hungarian Major
+let hungarianMajorChords = []
+
+for (let i = 0; i < 7; i++) {
+  hungarianMajorChords.push(permuteAlt(["dom7", "dim7", "min7b5", "min7b5", "min/maj7b5", "min7", "min/bb7"], i))
+}
+
+const HungarianMaj = [['1','#2','3','#4','5','6','b7'], [0, 3, 4, 6, 7, 9, 10],['Hungarian Minor'], [hungarianMajorChords[0]]]
+const Altb6bb7 = [['1','b2','b3','b4','b5','bb6','bb7'], [0, 1, 3, 4, 6, 7, 9], ['Alt b6 bb7'], [hungarianMajorChords[1]]]
+const Locrian27 = [['1','2','b3','4','b5','b6','7'], [0, 2, 3, 5, 6, 8, 11], ['Locrian ♮2 ♮7'], [hungarianMajorChords[2]]]
+const Alt6 = [['1','b2','b3','b4','b5','6','b7'], [0, 1, 3, 4, 6, 9, 10], ['Alt ♮6'], [hungarianMajorChords[3]]]
+const MelodicAugented = [['1','2','b3','4','#5','6','7'], [0, 2, 3, 5, 8, 9, 11], ['Melodic Augmented'], [hungarianMajorChords[4]]]
+const Dorianb2Sharp4 = [['1','b2','b3','#4','5','6','b7'], [0, 1, 3, 6, 7, 9, 10], ['Dorian b2 #4'], [hungarianMajorChords[5]]]
+const LydianAugSharp3 = [['1','b2','b3','b4','5','b6','bb7'], [0, 1, 3, 4, 7, 8, 9], ['Lydian Augmented #3'], [hungarianMajorChords[6]]]
+
+// [0, 2, 4, 5, 7, 9, 11]
+
+export const HungarianMajor = [ HungarianMaj, Altb6bb7, Locrian27, Alt6, MelodicAugented, Dorianb2Sharp4, LydianAugSharp3]
+
 
 // Hungarian minor
-
 
 let hungarianMinorChords = []
 
 for (let i = 0; i < 7; i++) {
-  hungarianMinorChords.push(permuteAlt(["min/maj7", "maj7/b5", "maj7/#5", "dim7/sus2", "maj7", "maj7", "min/b6"], i))
+  hungarianMinorChords.push(permuteAlt(["min/maj7", "maj7/b5", "maj7/#5", "dim7/sus2", "maj7", "maj7", "min/bb7"], i))
 }
 
 const HungarianMin = [['1','2','b3','#4','5','b6','7'], [0, 2, 3, 6, 7, 8, 11],['Hungarian Minor'], [hungarianMinorChords[0]]]

@@ -35,6 +35,18 @@ th {
   border: 1px solid black;
   overflow: hidden;
 }
+/* 
+tr:nth-child(even) > td:nth-child(even) {
+  background: yellow
+} */
+
+.no-highlight:nth-child(even) > td:nth-child(even) {
+  background-color: #CFD8DC;
+}
+
+.no-highlight:nth-child(odd) > td:nth-child(odd) {
+  background-color: #CFD8DC;
+}
 
 td {
   border: 1px solid black;
@@ -59,16 +71,28 @@ footer {
   text-align: center;
 }
 
-
+/* 
 .no-highlight {
   background: #ECEFF1;
+} */
+.highlighted td:nth-child(odd) {
+  background-color:#85e9df;
 }
-.highlighted {
-  background-color:#FFF700;
+.highlighted td:nth-child(even) {
+  background-color:#79ca7c;
+}
+.highlighted th {
+  background-color:#e5d43b;
 }
 
-.no-highlight:hover {
-  background-color: #FFFF8D;
+.no-highlight:hover td:nth-child(odd) {
+  background-color:#9de2db;
+}
+.no-highlight:hover td:nth-child(even) {
+  background-color:#91e094;
+}
+.no-highlight:hover th {
+  background-color:#f9ef97;
 }
 
 
