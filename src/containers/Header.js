@@ -18,7 +18,6 @@ const Header = (props) => {
             <button onClick={handleSwitch} value='1'>Notes</button>
           }
         </div>
-            Key:
             <select onChange={changeKey}>
               <option value='0'>C</option>
               <option value='1'>Db</option>
@@ -33,8 +32,7 @@ const Header = (props) => {
               <option value='10'>Bb</option>
               <option value='11'>B</option>
             </select>
-          <div> Scale: 
-          </div>
+     
             <select onChange={changeScale}> 
               <option value='0'>Major</option>
               <option value='1'>Melodic Minor</option>
@@ -45,8 +43,7 @@ const Header = (props) => {
               <option value='6'>Neapolitan Minor</option>
               <option value='7'>Neapolitan Major</option>
             </select>
-          <div> Cycle:
-          </div>
+
             <select onChange={changeCycle}>
               <option value='0'>Cycle 2</option>
               <option value='1'>Cycle 3</option>
