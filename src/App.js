@@ -8,10 +8,8 @@ import { permute } from './constants/helpers'
 import {tableStyle}  from './styles/styles'
 import Header from './containers/Header'
 import ScaleFormulas from './containers/ScaleFormulas'
-import SeventhChordCycles from './containers/SeventhChordCycles'
-import SeventhChordVoicings from './containers/SeventhChordVoicings'
-// import Intervals from './containers/Intervals/Intervals'
-import intervalArray from './constants/intervals'
+import ChordCycles from './containers/ChordCycles'
+import ChordVoicings from './containers/ChordVoicings'
 
 
 
@@ -24,8 +22,6 @@ class App extends Component {
       scale: Major,
       cycle: Cycles[0],
       onOff: 1,
-      interval: intervalArray[0],
-      showMenu: false,
     }
 
     this.changeKey = this.changeKey.bind(this)
@@ -33,7 +29,6 @@ class App extends Component {
     this.changeCycle = this.changeCycle.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
     this.buildScale = this.buildScale.bind(this)
-    this.buildChord = this.buildChord.bind(this)
     this.buildCycle = this.buildCycle.bind(this)
     this.handleHighlight = this.handleHighlight.bind(this)
   }
@@ -56,17 +51,11 @@ class App extends Component {
 
   changeCycle(event) {
     const e = event.target.value
-    this.changeInterval(e)
     this.setState({
       cycle: Cycles[e],
     })
   }
 
-  changeInterval(e) {
-    this.setState({
-      interval: intervalArray[e],
-    })
-  }
   
   handleSwitch(event) {
     const e = event.target.value;
@@ -78,25 +67,6 @@ class App extends Component {
   buildScale(arr) { 
     let [scaleNums, scaleNotes, scaleName, scaleChord] = arr
     return [scaleNums, scaleNotes.map(x => this.state.notes[x]), scaleName, scaleChord]
-  }
-
-  buildChord(scale, voicing, index) {
-    let arr = this.buildScale(scale)
-    
-    const inversions =  arr[index].map((note, i) => permute(arr[index], i)).filter((n, i) => i % 2 === 0)
-
-    const fullScale = (arr) => {
-      const [one, two, three, four] = arr
-      const result = []
-      for (let i = 0; i < 7; i++) {
-        result.push([one[i], two[i], three[i], four[i]])
-      }
-      result.push(result[0])
-      return result.map(x => voicing(x))
-    }
-    
-    return fullScale(inversions)
-
   }
 
   buildCycle(arr) {
@@ -125,51 +95,40 @@ class App extends Component {
           handleSwitch={this.handleSwitch}
         />
         <div id="innerDiv">
+
           <ScaleFormulas 
             tableStyle={tableStyle}
             scale={scale}
             onOff={onOff}
+            interval={this.state.cycle}
             buildScale={this.buildScale}
             buildCycle={this.buildCycle}
             handleHighlight={(e) => this.handleHighlight(e)}
           />
-
-          <SeventhChordCycles 
-            tableStyle={tableStyle}
+          <ChordCycles 
             scale={scale}
-            onOff={onOff}
-            buildScale={this.buildScale}
+            tableStyle={tableStyle}
             buildCycle={this.buildCycle}
+            buildScale={this.buildScale}
+            interval={this.state.cycle}
             handleHighlight={(e) => this.handleHighlight(e)}
+            onOff={onOff}
           />
 
-          {/* <Intervals 
-            bodyDiv={bodyDiv}
-            tableStyle={tableStyle}
-            scale={scale}
-            onOff={onOff}
-            interval={this.state.interval}
-            buildScale={this.buildScale}
-            buildChord={this.buildChord}
-            buildCycle={this.buildCycle}
-            handleHighlight={(e) => this.handleHighlight(e)}
-          /> */}
-
-          <SeventhChordVoicings 
-            tableStyle={tableStyle}
-            scale={scale}
-            onOff={onOff}
-            buildScale={this.buildScale}
-            buildChord={this.buildChord}
-            buildCycle={this.buildCycle}
+          <ChordVoicings 
             closedSeventh={closedSeventh}
             drop2={drop2}
             drop3={drop3}
             drop23={drop23}
             drop24={drop24}
             doubleDrop24={doubleDrop24}
+            interval={this.state.cycle}
+            scale={scale}
+            buildScale={this.buildScale}
+            tableStyle={tableStyle}
+            onOff={onOff}
+            permute={permute}
             handleHighlight={(e) => this.handleHighlight(e)}
-
           />
 
           <footer>

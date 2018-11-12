@@ -1,5 +1,5 @@
 import React from 'react';
-
+import banner from './header.png'
 
 const Header = (props) => {
   const {changeKey, changeScale, changeCycle, handleSwitch, onOff} = props;
@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <div className='topnav'>
       <div className='headerBox'>
-        <h1>Chord Scale Encyclopedia</h1>
+        <img alt='banner' src={banner} style={{width: '300px', height: '50px'}}></img>
       </div>
       <div className='menuBox'>
         <div>
@@ -48,12 +48,19 @@ const Header = (props) => {
           <div> Cycle:
           </div>
             <select onChange={changeCycle}>
-              <option value='0'>2nds</option>
-              <option value='1'>3rds</option>
-              <option value='2'>4ths</option>
-              <option value='3'>5ths</option>
-              <option value='4'>6ths</option>
-              <option value='5'>7ths</option>
+              <option value='0'>Cycle 2</option>
+              <option value='1'>Cycle 3</option>
+              <option value='2'>Cycle 4</option>
+              <option value='3'>Cycle 5</option>
+              <option value='4'>Cycle 6</option>
+              <option value='5'>Cycle 7</option>
+              <option value='6'>2nds</option>
+              <option value='7'>3rds</option>
+              <option value='8'>4ths</option>
+              <option value='9'>5ths</option>
+              <option value='10'>6ths</option>
+              <option value='11'>7ths</option>
+
             </select>
         </div>
     </div>

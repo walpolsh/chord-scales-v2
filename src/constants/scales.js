@@ -87,7 +87,7 @@ for (let i = 0; i < 7; i++) {
   hungarianMajorChords.push(permuteAlt(["dom7", "dim7", "min7b5", "min7b5", "min/maj7b5", "min7", "min/bb7"], i))
 }
 
-const HungarianMaj = [['1','#2','3','#4','5','6','b7'], [0, 3, 4, 6, 7, 9, 10],['Hungarian Minor'], [hungarianMajorChords[0]]]
+const HungarianMaj = [['1','#2','3','#4','5','6','b7'], [0, 3, 4, 6, 7, 9, 10],['Hungarian Major'], [hungarianMajorChords[0]]]
 const Altb6bb7 = [['1','b2','b3','b4','b5','bb6','bb7'], [0, 1, 3, 4, 6, 7, 9], ['Alt b6 bb7'], [hungarianMajorChords[1]]]
 const Locrian27 = [['1','2','b3','4','b5','b6','7'], [0, 2, 3, 5, 6, 8, 11], ['Locrian ♮2 ♮7'], [hungarianMajorChords[2]]]
 const Alt6 = [['1','b2','b3','b4','b5','6','b7'], [0, 1, 3, 4, 6, 9, 10], ['Alt ♮6'], [hungarianMajorChords[3]]]
