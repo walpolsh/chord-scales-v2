@@ -32,7 +32,23 @@ class App extends Component {
     this.buildCycle = this.buildCycle.bind(this)
     this.handleHighlight = this.handleHighlight.bind(this)
   }
-
+  
+  componentDidMount(){
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'a') {
+        document.getElementById('notes/nums').click()
+      }
+      if (event.key === 's') {
+        document.getElementById('keySig').focus()
+      }
+      if (event.key === 'd') {
+        document.getElementById('scale').focus()
+      }
+      if (event.key === 'f') {
+        document.getElementById('cycles/ints').focus()
+      }
+    })
+  }
   changeKey(event) {
     let keys = Chromatic;
     const e = event.target.value

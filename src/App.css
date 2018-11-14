@@ -74,12 +74,15 @@ footer {
 
 .highlighted td:nth-child(odd) {
   background-color:#81b5d2;
+  font-weight: bold;
 }
 .highlighted td:nth-child(even) {
   background-color:#79ca7c;
+  font-weight: bold;
 }
 .highlighted th {
   background-color: #ffeb3b;
+  font-weight: bold;
 }
 
 .no-highlight:hover td:nth-child(odd) {
