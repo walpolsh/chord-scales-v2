@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/chord-scales-v2/static/js/runtime~main.c6214537.js"
   },
   {
-    "revision": "edd54a4c4fce5fe9effa",
-    "url": "/chord-scales-v2/static/js/main.edd54a4c.chunk.js"
+    "revision": "9aa6510460ae214550b8",
+    "url": "/chord-scales-v2/static/js/main.9aa65104.chunk.js"
   },
   {
     "revision": "a5078fbd0e984d32fe6e",
     "url": "/chord-scales-v2/static/js/1.a5078fbd.chunk.js"
   },
   {
-    "revision": "edd54a4c4fce5fe9effa",
-    "url": "/chord-scales-v2/static/css/main.3e466ab6.chunk.css"
+    "revision": "9aa6510460ae214550b8",
+    "url": "/chord-scales-v2/static/css/main.2f17e1d5.chunk.css"
   },
   {
-    "revision": "d533e66c5e13cadc9843996abc3612cd",
+    "revision": "0e3f8b175cc7367e30e5ea801d8a3634",
     "url": "/chord-scales-v2/index.html"
   }
 ];
