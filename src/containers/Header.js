@@ -1,27 +1,22 @@
 import React from 'react';
 import banner from './header.png'
-
-
 const Header = (props) => {
+
   const {changeKey, changeScale, changeCycle, handleSwitch, onOff} = props;
-
-
   return (
     <div className='topnav'>
       <div className='headerBox'>
         <img alt='banner' src={banner} style={{width: '300px', height: '50px'}}></img>
       </div>
       <div className='menuBox' >
-        <div>
-          {
-            onOff === '1' ?
-            <button id='notes/nums' onClick={handleSwitch} value='0'>Nums</button>
-            :
-            <button id='notes/nums' onClick={handleSwitch} value='1'>Notes</button>
-          }
-        </div>
-            <select id='keySig' onChange={changeKey}>
-              <option value='0'>C</option>
+            {
+              onOff === '1' ?
+              <button id='notes/nums' onClick={handleSwitch} value='0'>Nums</button>
+              :
+              <button id='notes/nums' onClick={handleSwitch} value='1'>Notes</button>
+            }
+            <select  onChange={changeKey}>
+              <option id='keySig' value='0'>C</option>
               <option value='1'>Db</option>
               <option value='2'>D</option>
               <option value='3'>Eb</option>
@@ -42,8 +37,8 @@ const Header = (props) => {
               <option value='3'>Harmonic Major</option>
               <option value='4'>Hungarian Major</option>
               <option value='5'>Hungarian Minor</option>
-              <option value='6'>Neapolitan Minor</option>
               <option value='7'>Neapolitan Major</option>
+              <option value='6'>Neapolitan Minor</option>
             </select>
 
             <select id='cycles/ints' onChange={changeCycle}>

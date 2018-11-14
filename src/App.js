@@ -32,14 +32,15 @@ class App extends Component {
     this.buildCycle = this.buildCycle.bind(this)
     this.handleHighlight = this.handleHighlight.bind(this)
   }
-  
+
   componentDidMount(){
+    let keySig = document.getElementById('keySig');
     document.addEventListener('keydown', (event) => {
       if (event.key === 'a') {
         document.getElementById('notes/nums').click()
       }
       if (event.key === 's') {
-        document.getElementById('keySig').focus()
+        keySig.click()
       }
       if (event.key === 'd') {
         document.getElementById('scale').focus()

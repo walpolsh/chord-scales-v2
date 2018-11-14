@@ -29,9 +29,9 @@ const ChordVoicings = (props) => {
                   <th>Voicing</th>
                   {
                     onOff === '1' ? 
-                    numsMap.map((num, n) => <td>{num} {chordsMap[n]}</td>) 
+                    numsMap.map((num, n) => <td key={n++}>{num} {chordsMap[n]}</td>) 
                     : 
-                    notesMap.map((note, n) => <td>{note} {chordsMap[n]}</td>)
+                    notesMap.map((note, n) => <td key={n++}>{note} {chordsMap[n]}</td>)
                   }
                 </tr>
               </thead>
@@ -48,10 +48,10 @@ const ChordVoicings = (props) => {
                     )
                     :
                     voicings.map((voicing, x) => 
-                     <tr className='no-highlight' onClick={handleHighlight}>
-                        <th>{voicingNames[x]}</th>
+                     <tr key={x++} className='no-highlight' onClick={handleHighlight}>
+                        <th key={x++}>{voicingNames[x]}</th>
                         {interval.map(int => 
-                          <td>
+                          <td key={x++}>
                           {voicing(inversions(notes)[int]).join(' ')}
                           </td> )}
                      </tr>
